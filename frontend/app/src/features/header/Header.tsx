@@ -1,12 +1,13 @@
 import { Box, Flex, Heading, Spacer, ButtonGroup } from "@/features/components";
 import NextLink from "next/link";
 
+
 import LoginButton from "@/features/components/button/Login";
 import SignUpButton from "@/features/components/button/Signup";
 
 export default function Header() {
   return (
-    <Box as="header">
+    <Box as="header" className="header" position="fixed" top={0} left={0} right={0} zIndex={999} >
       <Flex
         bg="white"
         color="gray.600"
