@@ -7,7 +7,7 @@ type Props = {
 
 export default function PostCard({ post }: Props) {
   return (
-    <Box borderWidth="1px" borderRadius="lg" overflow="hidden" margin={5} width="300px" >
+    <Box borderWidth="1px" borderRadius="lg" overflow="hidden" margin={5} width="350px" >
       <Image src={post.thumbnailUrl} alt={post.title} w="100%" h="200px" objectFit="cover" />
       <Box p="6">
         <Flex alignItems="baseline">
