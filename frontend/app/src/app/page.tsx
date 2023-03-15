@@ -10,28 +10,28 @@ const posts: Post[] = [
     title: "投稿タイトル1",
     body: "投稿本文1",
     category: "技術",
-    thumbnailUrl: "https://dummyimage.com/300x200/000/fff",
+    thumbnailUrl: "https://dummyimage.com/350x200/000/fff",
   },
   {
     id: 2,
     title: "投稿タイトル2",
     body: "投稿本文2",
     category: "生活",
-    thumbnailUrl: "https://dummyimage.com/300x200/000/fff",
+    thumbnailUrl: "https://dummyimage.com/350x200/000/fff",
   },
   {
     id: 3,
     title: "投稿タイトル3",
     body: "投稿本文3",
     category: "技術",
-    thumbnailUrl: "https://dummyimage.com/300x200/000/fff",
+    thumbnailUrl: "https://dummyimage.com/350x200/000/fff",
   },
   {
     id: 4,
     title: "投稿タイトル4",
     body: "投稿本文4",
     category: "生活",
-    thumbnailUrl: "https://dummyimage.com/300x200/000/fff",
+    thumbnailUrl: "https://dummyimage.com/350x200/000/fff",
   },
   // その他の投稿データ
 ];
@@ -55,7 +55,7 @@ export default function Home() {
         ))}
       </Flex>
       <SideBar>
-        <Box as="img" src="https://via.placeholder.com/200x200" alt="banner" />
+        <Box as="img" src="https://via.placeholder.com/400x200" alt="banner" />
       </SideBar>
     </Flex>
   );
