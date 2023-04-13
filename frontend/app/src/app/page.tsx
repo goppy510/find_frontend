@@ -3,7 +3,7 @@ import PostCard from "@/features/post/components/PostCard";
 import { Post } from "@/features/post/types/post_types";
 import SideBar from "@/features/sidebar/SideBar";
 
-// 投稿データを定義する
+// 投稿データを定義する mock
 const posts: Post[] = [
   {
     id: 1,
@@ -55,7 +55,9 @@ export default function Home() {
         ))}
       </Flex>
       <SideBar>
-        <Box as="img" src="https://via.placeholder.com/400x200" alt="banner" />
+        <Box as="img" src="https://via.placeholder.com/400x200" alt="banner" mb={4} mt={4} />
+        <Box as="img" src="https://via.placeholder.com/400x200" alt="banner" mb={4} mt={4} />
+        <Box as="img" src="https://via.placeholder.com/400x200" alt="banner" mb={4} mt={4} />
       </SideBar>
     </Flex>
   );
