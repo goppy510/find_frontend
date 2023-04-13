@@ -21,7 +21,7 @@ export default function Header() {
       >
         <Flex flex={1} justify="space-between" maxW="5xl" mx="auto">
           <Heading as="h1" size="lg">
-            <NextLink href="/">MakeLead</NextLink>
+            <NextLink href="/">PromptData</NextLink>
           </Heading>
           <Spacer />
           <ButtonGroup gap='2'>
