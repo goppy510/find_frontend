@@ -1,12 +1,12 @@
 import React from "react";
-import { Box } from "../../../features/components";
-import PostCardDetail from "../../../features/post/components/PostCardDetail";
+import { Box } from "@/features/components";
+import PostCardDetail from "@/features/post/components/PostCardDetail";
 import { PostId } from "@/features/post/types/post_types";
 
 export default function PostPage({ params }: { params: { id: PostId } }) {
 
   return (
-    <Box maxW="5xl" mx="auto" px={{ base: 4, md: 0 }} py={8}>
+    <Box>
       <PostCardDetail id={ params.id } />
     </Box>
   );
