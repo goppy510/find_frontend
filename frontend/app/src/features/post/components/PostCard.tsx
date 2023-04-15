@@ -26,7 +26,7 @@ export default function PostCard({ post }: Props) {
             </Flex>
 
             <Text mt="2" color="gray.600">
-              {post.body}
+              {post.description}
             </Text>
           </Box>
       </Box>
