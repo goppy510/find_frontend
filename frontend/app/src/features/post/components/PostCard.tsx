@@ -1,17 +1,25 @@
-import { Box, Image, Flex, Heading, Text } from "@/features/components";
 // @ts-nocheck
 // use client
+import {
+  Box,
+  Flex,
+  Heading,
+  Text
+} from "@/features/components";
+import CategoryIcon from "@/features/components/CategoryIcon";
 import { Post } from "@/features/post/types/post_types";
 
-type Props = {
+type PostCardProps = {
   post: Post;
 };
 
-export default function PostCard({ post }: Props) {
+export default function PostCard({ post }: PostCardProps) {
   return (
     <Box borderWidth="1px" borderRadius="lg" overflow="hidden" margin={5} width="350px" >
       <Box as="a" href={`/posts/${post.id}`} cursor="pointer">
-          <Image src={post.thumbnailUrl} alt={post.title} w="100%" h="200px" objectFit="cover" />
+          <Box position="relative" width="100%" height="200px">
+            <CategoryIcon category={post.category} />
+          </Box>
           <Box p="6">
             <Flex alignItems="baseline">
               <Text fontWeight="semibold" color="gray.600" fontSize="sm">
