@@ -41,6 +41,7 @@ export default function PostForm() {
   const [showConfirmation, setShowConfirmation] = useState(false);
 
 
+  // gptモデル
   const handleModelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = event.target;
     setFormData((prevFormData) => ({
@@ -48,6 +49,9 @@ export default function PostForm() {
       model: value,
     }));
   };
+
+  // modelバリデーション
+  const modelRegister = register('model');
 
   // title文字数チェック
   const MAX_TITLE_LENGTH = 50;
@@ -200,12 +204,12 @@ export default function PostForm() {
                   <FormLabel htmlFor="displayName">モデル</FormLabel>
                   <Select
                     id="model"
-                    placeholder='モデルを選択してください'
+                    {...modelRegister}
                     value={formData.model}
                     onChange={handleModelChange}
                   >
-                    <option value='option1'>ChatGPT-3.5</option>
-                    <option value='option2'>ChatGPT-4</option>
+                    <option value='ChatGPT-3.5' selected>ChatGPT-3.5</option>
+                    <option value='ChatGPT-4'>ChatGPT-4</option>
                   </Select>
                 </FormControl>
 
