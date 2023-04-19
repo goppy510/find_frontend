@@ -4,8 +4,6 @@ export interface Post {
   title: string;
   description: string;
   category: string;
-  thumbnailUrl: string;
-  // その他の投稿データのプロパティ
 }
 
 // 詳細画面
@@ -19,7 +17,6 @@ export interface PostDetail {
   exampleInput: string;
   exampleOutput: string;
   category: string;
-  thumbnailUrl: string;
   price: number;
   favorites: number;
   views: number;
