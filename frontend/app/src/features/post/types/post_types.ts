@@ -1,3 +1,4 @@
+// ホーム画面の一覧
 export interface Post {
   id: number;
   title: string;
@@ -7,6 +8,7 @@ export interface Post {
   // その他の投稿データのプロパティ
 }
 
+// 詳細画面
 export interface PostDetail {
   id: number;
   creatorName: string;
@@ -28,4 +30,14 @@ export interface PostDetail {
 
 export interface PostId {
   id: number;
+}
+
+// 投稿・確認用
+export interface FormData {
+  model: string;
+  title: string;
+  description: string;
+  prompt: string;
+  exampleInput: string;
+  exampleOutput: string;
 }

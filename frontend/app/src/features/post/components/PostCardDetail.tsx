@@ -22,7 +22,7 @@ const postDetail: PostDetail = {
   price: 300,
   favorites: 20,
   views: 100,
-  rating: 4.8,
+  rating: 5.0,
   sold: 2000,
   model: "GPT-3.5"
 }
@@ -31,7 +31,7 @@ export default function PostCardDetail({ id }: Props) {
   const Rating: React.FC = () => {
     const maxRating = 5;
     const filledStars = Math.floor(postDetail.rating);
-    const hasHalfStar = postDetail.rating % 1 !== 0;
+    const hasHalfStar = postDetail.rating % 1 >= 0.5;
     
     const stars = [];
     for (let i = 0; i < filledStars; i++) {
@@ -185,6 +185,7 @@ export default function PostCardDetail({ id }: Props) {
     );
   };  
 
+  // 非会員に表示する
   const ExampleInputComponent = () => {
     const lines = postDetail.exampleInput.split('\n');
     const height = `${2 + lines.length * 1.5}em`;
