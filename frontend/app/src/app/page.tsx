@@ -9,29 +9,37 @@ const posts: Post[] = [
     id: 1,
     title: "投稿タイトル1",
     description: "投稿本文1",
-    category: "技術",
-    thumbnailUrl: "https://dummyimage.com/350x200/000/fff",
+    category: "IT"
   },
   {
     id: 2,
     title: "投稿タイトル2",
     description: "投稿本文2",
-    category: "生活",
-    thumbnailUrl: "https://dummyimage.com/350x200/000/fff",
+    category: "会計・経理・税務"
   },
   {
     id: 3,
     title: "投稿タイトル3",
     description: "投稿本文3",
-    category: "技術",
-    thumbnailUrl: "https://dummyimage.com/350x200/000/fff",
+    category: "法務"
   },
   {
     id: 4,
     title: "投稿タイトル4",
     description: "投稿本文4",
-    category: "生活",
-    thumbnailUrl: "https://dummyimage.com/350x200/000/fff",
+    category: "エクセル・スプレッドシート"
+  },
+  {
+    id: 5,
+    title: "投稿タイトル5",
+    description: "投稿本文5",
+    category: "文書"
+  },
+  {
+    id: 6,
+    title: "投稿タイトル6",
+    description: "投稿本文6",
+    category: "メール"
   },
   // その他の投稿データ
 ];
