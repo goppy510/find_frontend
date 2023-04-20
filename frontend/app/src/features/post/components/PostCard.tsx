@@ -21,7 +21,7 @@ type PostCardProps = {
 export default function PostCard({ post }: PostCardProps) {
 
   return (
-    <Box borderWidth="1px" borderRadius="lg" overflow="hidden" margin={5} width="350px">
+    <Box borderWidth="1px" borderRadius="lg" overflow="hidden" margin={5} width="350px" boxShadow="xl">
       <Box as="a" href={`/posts/${post.id}`} cursor="pointer">
         <Box position="relative" width="100%" height="120px">
           <CategoryIcon category={post.category} />
