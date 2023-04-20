@@ -14,10 +14,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <Grid
         templateAreas={`
           "header header"
+          "nav top"
           "nav main"
           "footer footer"
         `}
-        templateRows="50px 1fr 30px"
+        templateRows="50px 50px 1fr 30px"
         templateColumns="150px 1fr"
         height="100vh"
         gap={1}
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
         </GridItem>
         <GridItem area="nav">Nav</GridItem>
+        <GridItem area="top">Top</GridItem>
         <GridItem area="main">
           <Main>{children}</Main>
         </GridItem>
