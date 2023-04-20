@@ -1,7 +1,9 @@
-import { Flex, Box} from "@/features/components";
+import {
+  Grid,
+  GridItem
+} from "@/features/components";
 import PostCard from "@/features/post/components/PostCard";
 import { Post } from "@/features/post/types/post_types";
-import SideBar from "@/features/sidebar/SideBar";
 
 // 投稿データを定義する mock
 const posts: Post[] = [
@@ -76,27 +78,15 @@ const posts: Post[] = [
 
 export default function Home() {
   return (
-    <Flex direction={{ base: "column", xl: "row" }}>
-      <Flex
-        direction={{ base: "column", md: "row" }}
-        justifyContent={{ base: "center", md: "flex-start" }}
-        alignItems={{ base: "center", md: "flex-start" }}
-        w={{ base: "100%", xl: "75%" }}
-        maxW="5xl"
-        mx="auto"
-        px={{ base: 4, md: 0 }}
-        py={8}
-        flexWrap="wrap" // ここで折り返しを有効にする
-      >
-        {posts.map((post) => (
-          <PostCard key={post.id} post={post} />
-        ))}
-      </Flex>
-      <SideBar>
-        <Box as="img" src="https://via.placeholder.com/400x200" alt="banner" mb={4} mt={4} />
-        <Box as="img" src="https://via.placeholder.com/400x200" alt="banner" mb={4} mt={4} />
-        <Box as="img" src="https://via.placeholder.com/400x200" alt="banner" mb={4} mt={4} />
-      </SideBar>
-    </Flex>
+    <Grid
+      templateColumns="repeat(3, 1fr)"
+      gap={4}
+    >
+      {posts.map((post) => (
+        <GridItem key={post.id} colSpan={1} rowSpan={1}>
+          <PostCard post={post} />
+        </GridItem>
+      ))}
+    </Grid>
   );
 }
