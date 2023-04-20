@@ -12,10 +12,10 @@ import {
   FaStar,
   FaStarHalf,
   FaRegStar,
-  FaTags,
   FaHeart,
   FaEye,
-  FaLaptop
+  FaLaptop,
+  FaBookReader
 } from 'react-icons/fa';
 
 type Props = {
@@ -33,11 +33,10 @@ const postDetail: PostDetail = {
   exampleInput: "DETAILS: Company name: Jasper.ai\nProduct name: Jasper Writing Assistant\nProduct description: Jasper is the AI Content Generator that helps you and your team break through creative blocks to create amazing, original content 10X faster.\nTarget Audience: Writers\nDescribe Your Target Audience: Writers who need help overcoming writers block",
   exampleOutput: "A Call to Arms!\nThe writer's world is in peril, besieged by the tyranny of creative blocks and a dearth of ideas. But there is hope! For the brave souls who answer the call, Jasper.ai has come to the rescue with the Jasper Writing Assistant. This revolutionary product provides the tools to help writers break through creative barriers and unlock their potential. Join us in this fight and let us together forge a new dawn of creativity and inspiration! \n\nThe Voice of The Customer\nThe writer felt the weight of the world on their shoulders as they stared at the blank page. Each passing moment felt like an eternity as their mind raced in search the perfect idea. No matter how hard they tried, the words just wouldn't come. The frustration of being unable to break through the creative blocks was like a heavy blanket of despair that threatened to smother them. \n\nUnderstanding The Customer's Fears\n1. Fear of failure: Writers may fear that they will not be able to create something that meets their own standards.\n2. Fear of the unknown: Writers may fear that they are unable to come up with something truly unique and original.\n3. Fear of rejection: Writers may fear that their work will be rejected by their peers or the public.\n\nUnderstanding Customer's Hopes\n1. Hope for success: Writers hope that their work will be successful and appreciated.\n2. Hope for recognition: Writers hope that their work will be noticed and appreciated.\n3. Hope for inspiration: Writers hope that they will be able to come up with ideas that are truly unique and inspiring.\n\nUnderstanding Customer's Motives\n1. Motivation to create: Writers are motivated to create something new and unique. Key barriers include lack of ideas, fear of failure, and fear of rejection.\n2. Motivation to improve: Writers are motivated to improve their writing skills and techniques. Key barriers include lack of time and resources.\n3. Motivation to succeed: Writers are motivated to succeed and make a name for themselves. Key barriers include lack of support and recognition.",
   category: "IT",
-  price: 300,
   favorites: 20,
   views: 100,
   rating: 5.0,
-  sold: 2000,
+  read: 2000,
   model: "GPT-3.5"
 }
 
@@ -70,7 +69,7 @@ export default function PostCardDetail({ id }: Props) {
     );
   };
 
-  const BuyButton = () => {
+  const ReadButton = () => {
     return (
       <Button
         size="lg"
@@ -79,7 +78,7 @@ export default function PostCardDetail({ id }: Props) {
         _active={{ bg: "blue.700" }}
         _focus={{ boxShadow: "none" }}
       >
-        買ってみる
+        読む
       </Button>
     );
   }
@@ -125,9 +124,9 @@ export default function PostCardDetail({ id }: Props) {
               <Box>
                 <Flex alignItems="center">
                   <Box as="span" fontWeight="bold" mr="2">
-                    <FaTags />
+                    <FaBookReader />
                   </Box>
-                  <Box as="span">{postDetail.sold}</Box>
+                  <Box as="span">{postDetail.read}</Box>
                 </Flex>
               </Box>
               <Box>
@@ -160,12 +159,8 @@ export default function PostCardDetail({ id }: Props) {
             <Flex justifyContent="center" alignItems="center" my="1">
               <Box>
                 <Flex alignItems="center">
-                  <Box as="span" fontWeight="bold" fontSize="2xl">
-                    {postDetail.price}円
-                  </Box>
-                  <Box mx="2" />
                   <Box as="span" fontWeight="bold" mr="2">
-                    <BuyButton />
+                    <ReadButton />
                   </Box>
                 </Flex>
               </Box>
@@ -261,12 +256,8 @@ export default function PostCardDetail({ id }: Props) {
         <Flex justifyContent="center" alignItems="center" my="5">
           <Box>
             <Flex alignItems="center">
-              <Box as="span" fontWeight="bold" fontSize="2xl">
-                {postDetail.price}円
-              </Box>
-              <Box mx="2" />
               <Box as="span" fontWeight="bold" mr="2">
-                <BuyButton />
+                <ReadButton />
               </Box>
             </Flex>
           </Box>
