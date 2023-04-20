@@ -35,14 +35,14 @@ const categoryIcons: CategoryIcons = {
   "会計・経理・税務": { icon: <FaCalculator style={{ width: 60, height: 60 }} />, bg: "red.300" },
   "効率・時短": { icon: <FaBusinessTime style={{ width: 60, height: 60 }} />, bg: "indigo.300" },
   "マネジメント": { icon: <FaUsers style={{ width: 60, height: 60 }} />, bg: "cyan.300" },
-  "法務": { icon: <FaBalanceScaleRight style={{ width: 60, height: 60 }} />, bg: "gray.300" },
-  "教育": { icon: <FaGraduationCap style={{ width: 60, height: 60 }} />, bg: "purple.300" },
-  "マーケティング": { icon: <FaClipboardCheck style={{ width: 60, height: 60 }} />, bg: "teal.300" },
-  "時事": { icon: <FaNewspaper style={{ width: 60, height: 60 }} />, bg: "orange.300" },
-  "その他": { icon: <FaQuestion style={{ width: 60, height: 60 }} />, bg: "gray.300" }
+  "法務": { icon: <FaBalanceScaleRight style={{ width: 60, height: 60 }} />, bg: "gray.700" },
+  "教育": { icon: <FaGraduationCap style={{ width: 60, height: 60 }} />, bg: "purple.400" },
+  "マーケティング": { icon: <FaClipboardCheck style={{ width: 60, height: 60 }} />, bg: "teal.400" },
+  "時事": { icon: <FaNewspaper style={{ width: 60, height: 60 }} />, bg: "orange.400" },
+  "その他": { icon: <FaQuestion style={{ width: 60, height: 60 }} />, bg: "yellow.400" }
 };
 export default function CategoryIcon({ category }: { category: string }): JSX.Element {
-  const { icon, bg } = categoryIcons[category] ?? { icon: <Icon />, bg: "gray.300" };
+  const { icon, bg } = categoryIcons[category] ?? { icon: <Icon />, bg: "gray.500" };
   // カテゴリに対応するアイコンと背景色が存在しない場合は、デフォルトのアイコンと色を使用する
   return (
     <Box
