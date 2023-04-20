@@ -14,7 +14,7 @@ export default function SignUpButton() {
         bg: "messenger.500",
       }}
     >
-      新規登録
+      無料会員登録
     </Button>
   );
 }
