@@ -1,6 +1,11 @@
-import { Box, Flex, Heading, Spacer, ButtonGroup } from "@/features/components";
+import {
+  Box,
+  Flex,
+  Heading,
+  Spacer,
+  ButtonGroup
+} from "@/features/components";
 import NextLink from "next/link";
-
 
 import LoginButton from "@/features/components/button/Login";
 import SignUpButton from "@/features/components/button/Signup";
