@@ -16,7 +16,6 @@ export default function Header() {
       <Flex
         bg="white"
         color="gray.600"
-        minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom={1}
