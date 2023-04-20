@@ -8,10 +8,10 @@ type CategoryTags = {
 const categoryTags: CategoryTags = {
   "IT": { colorScheme: "purple" },
   "株・投資": { colorScheme: "teal" },
-  "エクセル・スプレッドシート": { colorScheme: "yellow" },
-  "パワーポイント・スライド": { colorScheme: "orange" },
+  "エクセル・スプレッドシート": { colorScheme: "green" },
+  "パワーポイント・スライド": { colorScheme: "yellow" },
   "ワード・ドキュメント": { colorScheme: "blue" },
-  "メール": { colorScheme: "green" },
+  "メール": { colorScheme: "orange" },
   "文書": { colorScheme: "gray" },
   "コミュニケーション": { colorScheme: "pink" },
   "会計・経理・税務": { colorScheme: "red" },
