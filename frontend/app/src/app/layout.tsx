@@ -13,15 +13,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <Provider>
       <Grid
         templateAreas={`
-          "header header"
-          "nav top"
-          "nav main"
-          "footer footer"
+          "header header header"
+          "nav top space"
+          "nav main space"
+          "footer footer footer"
         `}
         templateRows="50px 50px 1fr 30px"
-        templateColumns="150px 1fr"
-        height="100vh"
-        gap={1}
+        templateColumns="250px 1fr 1fr"
+        h="100vh"
+        w="100%"
+        gap={2}
       >
         <GridItem area="header">
           <Header />
