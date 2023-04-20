@@ -79,11 +79,16 @@ const posts: Post[] = [
 export default function Home() {
   return (
     <Grid
-      templateColumns="repeat(3, 1fr)"
-      gap={4}
+      templateRows="repeat(3, 1fr)"
+      templateColumns={{
+        base: "repeat(1, 1fr)",
+        sm: "repeat(2, 1fr)",
+        md: "repeat(3, 1fr)"
+      }}
+      gap={5}
     >
       {posts.map((post) => (
-        <GridItem key={post.id} colSpan={1} rowSpan={1}>
+        <GridItem key={post.id}>
           <PostCard post={post} />
         </GridItem>
       ))}
