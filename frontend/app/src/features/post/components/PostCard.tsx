@@ -23,7 +23,14 @@ type PostCardProps = {
 export default function PostCard({ post }: PostCardProps) {
 
   return (
-    <Box borderWidth="1px" borderRadius="lg" overflow="hidden" w="100%" boxShadow="xl">
+    <Box
+      borderWidth="1px"
+      borderRadius="lg"
+      overflow="hidden"
+      w="100%"
+      boxShadow="xl"
+      _hover={{ bg: "gray.50" }}
+    >
       <Box as="a" href={`/posts/${post.id}`} cursor="pointer">
         <Grid
           templateAreas={`
