@@ -1,6 +1,7 @@
 import './globals.css'
 import Provider from "@/features/components/Provider"
 import Header from "@/features/header/Header"
+import Top from '@/features/top/Top'
 import SideBar from '@/features/sidebar/SideBar'
 import Main from "@/features/main/Main"
 import Footer from "@/features/footer/Footer"
@@ -22,8 +23,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "sideBar main space"
               "footer footer footer"
             `}
-            templateRows="50px 50px 1fr 30px"
-            templateColumns="250px 1fr 1fr"
+            templateRows="50px 120px 1fr 30px"
+            templateColumns="2fr 7fr 1fr"
             h="100vh"
             w="100%"
             gap={2}
@@ -34,7 +35,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <GridItem area="sideBar">
               <SideBar />
             </GridItem>
-            <GridItem area="top">Top</GridItem>
+            <GridItem area="top">
+              <Top />
+            </GridItem>
             <GridItem area="main">
               <Main>{children}</Main>
             </GridItem>
