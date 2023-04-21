@@ -37,7 +37,7 @@ export default function PostCard({ post }: PostCardProps) {
           templateColumns="110px 110px 110px"
         >
           <GridItem area="categoryIcon">
-            <Box>
+            <Box height="120px">
               <CategoryIcon category={post.category} />
             </Box>
           </GridItem>
