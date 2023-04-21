@@ -34,7 +34,14 @@ export default function CategoryTag({
   const { colorScheme } = categoryTags[category] ?? { colorScheme: "gray" };
 
   return (
-    <Tag size={size} key={category} variant="outline" colorScheme={colorScheme}>
+    <Tag
+      size={size}
+      key={category}
+      variant="outline"
+      colorScheme={colorScheme}
+      borderRadius='full'
+      overflow="hidden"
+    >
       <TagLabel>{category}</TagLabel>
     </Tag>
   );
