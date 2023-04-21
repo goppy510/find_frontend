@@ -1,3 +1,5 @@
+"use client";
+import { useState, useEffect, useRef } from "react";
 import {
   Grid,
   GridItem
@@ -6,7 +8,7 @@ import PostCard from "@/features/post/components/PostCard";
 import { Post } from "@/features/post/types/post_types";
 
 // 投稿データを定義する mock
-const posts: Post[] = [
+const postMock1: Post[] = [
   {
     id: 1,
     title: "Ultimate Marketing Audience",
@@ -39,7 +41,10 @@ const posts: Post[] = [
     read: 50,
     creatorName: 'hogehoge',
     creatorIcon: "https://github.com/identicons/pronama.png"
-  },
+  }
+]
+
+const postMock2: Post[] = [
   {
     id: 4,
     title: "投稿タイトル4",
@@ -76,14 +81,50 @@ const posts: Post[] = [
   // その他の投稿データ
 ];
 
+// 1 つのページあたりに表示する投稿の数
+const PAGE_SIZE = 3;
+
 export default function Home() {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  // 初回
+  useEffect(() => {
+    const fetchInitialPosts = async () => {
+      const initialPosts = posts.slice(0, PAGE_SIZE);
+      //setPosts(initialPosts);
+      setPosts(postMock1);
+    };
+
+    fetchInitialPosts();
+  }, []);
+
+  useEffect(() => {
+    const fetchNextPage = async () => {
+      const nextPagePosts = posts.slice(posts.length, posts.length + PAGE_SIZE);
+      //setPosts((prevPosts) => [...prevPosts, ...nextPagePosts]);
+      setPosts((prevPosts) => [...prevPosts, ...postMock2]);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        observer.disconnect();
+        fetchNextPage();
+      }
+    });
+
+    observer.observe(bottomRef.current as HTMLDivElement);
+
+    return () => observer.disconnect();
+  }, [posts]);
+
   return (
     <Grid
       templateRows="repeat(3, 1fr)"
       templateColumns={{
         base: "repeat(1, 1fr)",
         sm: "repeat(2, 1fr)",
-        md: "repeat(3, 1fr)"
+        md: "repeat(3, 1fr)",
       }}
       gap={5}
     >
@@ -92,6 +133,7 @@ export default function Home() {
           <PostCard post={post} />
         </GridItem>
       ))}
+      <div ref={bottomRef} style={{ height: "10px", backgroundColor: "transparent" }} />
     </Grid>
   );
 }
