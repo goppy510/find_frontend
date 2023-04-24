@@ -8,7 +8,7 @@ export default function SignUpButton() {
       fontSize="sm"
       fontWeight={600}
       color="white"
-      bg="messenger.400"
+      bg="teal.500"
       href="/signup"
       _hover={{
         bg: "messenger.500",
