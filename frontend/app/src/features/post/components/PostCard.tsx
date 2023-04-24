@@ -8,9 +8,9 @@ import {
   GridItem
 } from "@/features/components";
 import {
-  FaHeart,
   FaEye,
-  FaBookReader
+  FaBookReader,
+  FaThumbsUp
 } from 'react-icons/fa';
 import CategoryIcon from "@/features/components/CategoryIcon";
 import CategoryTag from "@/features/components/CategoryTag";
@@ -95,7 +95,7 @@ export default function PostCard({ post }: PostCardProps) {
           <GridItem area="like" my={2} mx={6}>
             <Flex alignItems="center">
               <Box as="span" fontWeight="bold" mr={2}>
-                <FaHeart color="pink" />
+                <FaThumbsUp />
               </Box>
               <Box as="span">{post.favorites}</Box>
             </Flex>
