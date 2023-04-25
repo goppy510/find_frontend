@@ -4,9 +4,9 @@ export interface Post {
   title: string;
   description: string;
   category: string;
-  favorites: number;
+  likes: number;
   views: number;
-  read: number;
+  memberViews: number;
   creatorName: string;
   creatorIcon: string;
 }
@@ -22,10 +22,10 @@ export interface PostDetail {
   exampleInput: string;
   exampleOutput: string;
   category: string;
-  favorites: number;
+  likes: number;
   views: number;
   rating: number;
-  read: number;
+  memberViews: number;
   model: string;
 }
 
