@@ -15,10 +15,8 @@ import {
   FormHelperText,
   FormErrorMessage
 } from "@/features/components";
-// @ts-nocheck
-// use client
-import { FormData } from "@/features/post/types/post_types";
-import Confirmation from "@/features/post/components/PostConfirmation";
+import { FormData } from "@/features/post/types/PostTypes";
+import Confirmation from "@/features/post/components/PostForm/PostConfirmation";
 
 const INITIAL_FORM_DATA: FormData = {
   model: "",
