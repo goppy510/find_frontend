@@ -1,6 +1,11 @@
-import { Box, Flex, Heading, Spacer, ButtonGroup } from "@/features/components";
+import {
+  Box,
+  Flex,
+  Heading,
+  Spacer,
+  ButtonGroup
+} from "@/features/components";
 import NextLink from "next/link";
-
 
 import LoginButton from "@/features/components/button/Login";
 import SignUpButton from "@/features/components/button/Signup";
@@ -11,7 +16,6 @@ export default function Header() {
       <Flex
         bg="white"
         color="gray.600"
-        minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom={1}

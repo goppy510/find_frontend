@@ -1,34 +1,114 @@
-import { Box, Image, Flex, Heading, Text } from "@/features/components";
 // @ts-nocheck
 // use client
+import {
+  Box,
+  Flex,
+  Heading,
+  Grid,
+  GridItem
+} from "@/features/components";
+import {
+  FaEye,
+  FaBookReader,
+  FaThumbsUp
+} from 'react-icons/fa';
+import CategoryIcon from "@/features/components/CategoryIcon";
+import CategoryTag from "@/features/components/CategoryTag";
 import { Post } from "@/features/post/types/post_types";
 
-type Props = {
+type PostCardProps = {
   post: Post;
 };
 
-export default function PostCard({ post }: Props) {
-  return (
-    <Box borderWidth="1px" borderRadius="lg" overflow="hidden" margin={5} width="350px" >
-      <Box as="a" href={`/posts/${post.id}`} cursor="pointer">
-          <Image src={post.thumbnailUrl} alt={post.title} w="100%" h="200px" objectFit="cover" />
-          <Box p="6">
-            <Flex alignItems="baseline">
-              <Text fontWeight="semibold" color="gray.600" fontSize="sm">
-                {post.category}
-              </Text>
-            </Flex>
+export default function PostCard({ post }: PostCardProps) {
 
-            <Flex mt="2" justify="space-between" align="center">
-              <Heading size="md" isTruncated maxH="3em">
+  return (
+    <Box
+      borderWidth="1px"
+      borderRadius="lg"
+      overflow="hidden"
+      w="100%"
+      boxShadow="xl"
+      _hover={{ bg: "gray.50" }}
+    >
+      <Box as="a" href={`/posts/${post.id}`} cursor="pointer">
+        <Grid
+          templateAreas={`
+            "categoryIcon categoryIcon categoryIcon"
+            "category category category"
+            "title title title"
+            "description description description"
+            "read like views"
+          `}
+          templateRows="120px 1fr 20px 70px 1fr"
+          templateColumns="110px 110px 110px"
+        >
+          <GridItem area="categoryIcon">
+            <Box height="120px">
+              <CategoryIcon category={post.category} />
+            </Box>
+          </GridItem>
+          <GridItem area="category" my={3} mx={6}>
+            <Box>
+              <CategoryTag category={post.category} />
+            </Box>
+          </GridItem>
+          <GridItem area="title" mx={6}>
+            <Box
+              mt="2"
+              overflow="hidden"
+              display="-webkit-box"
+              style={{
+                WebkitLineClamp: 1,
+                WebkitBoxOrient: "vertical"
+              }}
+              height="20px"
+            >
+              <Heading size="md" isTruncated height="20px">
                 {post.title}
               </Heading>
-            </Flex>
-
-            <Text mt="2" color="gray.600">
+            </Box>
+          </GridItem>
+          <GridItem area="description" my={3} mx={6}>
+            <Box
+              mt="2"
+              color="gray.600"
+              overflow="hidden"
+              display="-webkit-box"
+              style={{
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical"
+              }}
+              height="50px"
+            >
               {post.description}
-            </Text>
-          </Box>
+            </Box>
+          </GridItem>
+          <GridItem area="read"my={2} mx={6}>
+            <Flex alignItems="center">
+              <Box as="span" fontWeight="bold" mr="2">
+                <FaBookReader />
+              </Box>
+              <Box as="span">{post.read}</Box>
+            </Flex>
+          </GridItem>
+          <GridItem area="like" my={2} mx={6}>
+            <Flex alignItems="center">
+              <Box as="span" fontWeight="bold" mr={2}>
+                <FaThumbsUp />
+              </Box>
+              <Box as="span">{post.favorites}</Box>
+            </Flex>
+          </GridItem>
+          <GridItem area="views" my={2} mx={6}>
+            <Flex alignItems="center">
+              <Box as="span" fontWeight="bold" mr={2}>
+                <FaEye />
+              </Box>
+              <Box as="span">{post.views}</Box>
+            </Flex>
+          </GridItem>
+        </Grid>
       </Box>
     </Box>
   );
