@@ -78,18 +78,18 @@ export default function AccountPage({ account }: AccountProps) {
             <Box w="500px">
               <StatGroup spacing={6}>
                 <Stat>
+                  <StatNumber>{account.views}</StatNumber>
                   <StatLabel>閲覧数 <Icon as={FaBookReader} /></StatLabel>
-                  <StatNumber>{account.views}</StatNumber>
                 </Stat>
 
                 <Stat>
-                  <StatLabel>いいね！ <Icon as={FaThumbsUp} /></StatLabel>
                   <StatNumber>{account.like}</StatNumber>
+                  <StatLabel>いいね！ <Icon as={FaThumbsUp} /></StatLabel>
                 </Stat>
 
                 <Stat>
-                  <StatLabel>表示数 <Icon as={FaEye} /></StatLabel>
                   <StatNumber>{account.views}</StatNumber>
+                  <StatLabel>表示数 <Icon as={FaEye} /></StatLabel>
                 </Stat>
               </StatGroup>
             </Box>
