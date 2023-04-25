@@ -4,8 +4,8 @@ import {
   Grid,
   GridItem
 } from "@/features/components";
-import PostCard from "@/features/post/components/PostCard";
-import { Post } from "@/features/post/types/post_types";
+import PostCard from "@/features/post/components/PostCard/PostCard";
+import { Post } from "@/features/post/types/PostTypes";
 
 // 投稿データを定義する mock
 const postMock1: Post[] = [
