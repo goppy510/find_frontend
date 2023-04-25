@@ -10,7 +10,7 @@ export default function ExampleOutput({text}: Props) {
   const height = `${2 + lines.length * 1.5}em`;
 
   return (
-    <Box w={{ base: '100%' }} minH={{ base: height }} bg="blue.900" color="white">
+    <Box w={{ base: '100%' }} minH={{ base: height }} bg="gray.600" color="white">
       <Flex justifyContent="space-between" alignItems="center">
         <Box mx="auto">
           <Box fontSize="1xl" mb="4" mx="3">
