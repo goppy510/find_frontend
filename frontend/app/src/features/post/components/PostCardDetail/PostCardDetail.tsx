@@ -1,6 +1,6 @@
 "use client";
 import { Box, Flex } from "@/features/components";
-import { PostDetail, PostId } from "@/features/post/types/PostTypes";
+import { PostDetail, PostId } from "@/features/post/types/post-types";
 import {
   DetailHeader,
   Thumbnail,

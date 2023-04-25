@@ -13,7 +13,7 @@ import {
   Likes,
   Views
 } from "@/features/post/components/PostCard/parts";
-import { Post } from "@/features/post/types/PostTypes";
+import { Post } from "@/features/post/types/post-types";
 
 type PostCardProps = {
   post: Post;

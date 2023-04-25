@@ -15,7 +15,7 @@ import {
   FormHelperText,
   FormErrorMessage
 } from "@/features/components";
-import { FormData } from "@/features/post/types/PostTypes";
+import { FormData } from "@/features/post/types/post-types";
 import Confirmation from "@/features/post/components/PostForm/PostConfirmation";
 
 const INITIAL_FORM_DATA: FormData = {
