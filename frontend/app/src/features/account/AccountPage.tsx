@@ -26,7 +26,7 @@ import {
   FaThumbsUp
 } from 'react-icons/fa';
 import NextLink from "next/link";
-import { AccountType } from "@/features/account/types/AccountTypes";
+import { AccountType } from "@/features/account/types/account-types";
 
 type AccountProps = {
   account: AccountType;
