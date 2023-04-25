@@ -12,7 +12,6 @@ import {
   FaCog
 } from "react-icons/fa";
 import { useState } from "react";
-import NextLink from "next/link";
 
 type NavItemProps = {
   icon: any;
