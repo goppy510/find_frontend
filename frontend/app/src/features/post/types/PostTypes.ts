@@ -7,16 +7,16 @@ export interface Post {
   likes: number;
   views: number;
   memberViews: number;
-  creatorName: string;
-  creatorIcon: string;
+  accountName: string;
+  avater: string;
 }
 
 // 詳細画面
 export interface PostDetail {
   id: number;
-  creatorName: string;
-  creatorLink: string;
-  creatorIcon: string;
+  accountName: string;
+  accountLink: string;
+  avater: string;
   title: string;
   description: string;
   exampleInput: string;
@@ -41,4 +41,17 @@ export interface FormData {
   prompt: string;
   exampleInput: string;
   exampleOutput: string;
+}
+
+// ヘッダーコンポーネント用
+export interface Header {
+  accountName: string;
+  accountLink: string;
+  avater: string;
+  title: string;
+  likes: number;
+  views: number;
+  rating: number;
+  memberViews: number;
+  model: string;
 }
