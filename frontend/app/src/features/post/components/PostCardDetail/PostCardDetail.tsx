@@ -32,7 +32,7 @@ const postDetail: PostDetail = {
   model: "GPT-3.5"
 }
 
-export default function PostCardDetail() {
+export default function PostCardDetail({ id }: Props) {
 
   return (
     <Box minH="100vh" maxW="1200px"  m="0 auto">
