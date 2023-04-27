@@ -1,6 +1,5 @@
 "use client";
 import { Tag, TagLabel, Box } from "@/features/components";
-import CategoryTag from "@/features/components/CategoryTag";
 import * as React from "react";
 
 const categories = [
