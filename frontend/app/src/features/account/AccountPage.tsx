@@ -1,9 +1,7 @@
 "use client";
 import {
   Box,
-  Container,
   Avatar,
-  WrapItem,
   Tab,
   Tabs,
   TabList,
@@ -13,18 +11,12 @@ import {
   Stat,
   StatLabel,
   StatNumber,
-  StatHelpText,
-  StatArrow,
   StatGroup,
   Grid,
   GridItem,
   Icon
 } from "@/features/components";
-import {
-  FaEye,
-  FaBookReader,
-  FaThumbsUp
-} from 'react-icons/fa';
+import { FaEye, FaBookReader, FaThumbsUp } from 'react-icons/fa';
 import NextLink from "next/link";
 import { AccountType } from "@/features/account/types/account-types";
 
@@ -41,68 +33,74 @@ export default function AccountPage({ account }: AccountProps) {
         "profile"
         "contents"
       `}
-      templateRows="200px 60px 1fr"
+      templateRows="3.5fr 1fr 6fr"
       h="100vh"
       w="100%"
       gap={2}
     >
       <GridItem area="dashbord">
         <Box
-          h="100px"
+          h="10em"
           border="1px"
           borderColor="gray.200"
           borderRadius="lg"
           boxShadow="xl"
           display="flex"
           alignItems="center"
-          position="relative" // 親要素を相対的位置に設定
         >
           <Grid
             templateAreas={`
-              "avater statistics"
+              "avatar statistics"
             `}
-            templateColumns="500px 1fr"
+            templateColumns="7fr 5fr"
             w="100%"
-          />
-          <GridItem area="avater">
-            <Box position="absolute" top={30} left={10} right={0} bottom={0}>
-              <Avatar
-                size="2xl"
-                src={account.creatorIcon}
-                mx="auto" // アバターを中央に揃える
-                my="auto"
-              />
-            </Box>
-          </GridItem>
-          <GridItem area="statistics">
-            <Box w="500px">
-              <StatGroup spacing={6}>
-                <Stat>
-                  <StatNumber>{account.views}</StatNumber>
-                  <StatLabel>閲覧数 <Icon as={FaBookReader} /></StatLabel>
-                </Stat>
+          >
+            <GridItem area="avatar">
+              <Box ml="10px">
+                <Avatar
+                  size="2xl"
+                  src={account.avatar}
+                  mx="auto" // アバターを中央に揃える
+                  my="auto"
+                />
+              </Box>
+            </GridItem>
+            <GridItem area="statistics">
+              <Flex
+                h="100%"
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Box w="20em">
+                  <StatGroup spacing={6}>
+                    <Stat>
+                      <StatNumber>{account.memberViews}</StatNumber>
+                      <StatLabel>閲覧数 <Icon as={FaBookReader} /></StatLabel>
+                    </Stat>
 
-                <Stat>
-                  <StatNumber>{account.like}</StatNumber>
-                  <StatLabel>いいね！ <Icon as={FaThumbsUp} /></StatLabel>
-                </Stat>
+                    <Stat>
+                      <StatNumber>{account.likes}</StatNumber>
+                      <StatLabel>いいね！ <Icon as={FaThumbsUp} /></StatLabel>
+                    </Stat>
 
-                <Stat>
-                  <StatNumber>{account.views}</StatNumber>
-                  <StatLabel>表示数 <Icon as={FaEye} /></StatLabel>
-                </Stat>
-              </StatGroup>
-            </Box>
-          </GridItem>
+                    <Stat>
+                      <StatNumber>{account.views}</StatNumber>
+                      <StatLabel>表示数 <Icon as={FaEye} /></StatLabel>
+                    </Stat>
+                  </StatGroup>
+                </Box>
+              </Flex>
+            </GridItem>
+          </Grid>
         </Box>
       </GridItem>
       <GridItem area="profile">
         <Flex>
           <Box
-            fontSize="3xl"
+            fontSize="2em"
             fontWeight="bold"
           >
-            {account.creatorName}
+            {account.accountName}
           </Box>
         </Flex>
       </GridItem>
