@@ -5,7 +5,7 @@ import {
   GridItem
 } from "@/features/components";
 import PostCard from "@/features/post/components/PostCard/PostCard";
-import { Post } from "@/features/post/types/PostTypes";
+import { Post } from "@/features/post/types/post-types";
 
 // 投稿データを定義する mock
 const postMock1: Post[] = [
@@ -17,8 +17,8 @@ const postMock1: Post[] = [
     likes: 120,
     views: 280,
     memberViews: 50,
-    creatorName: 'hogehoge',
-    creatorIcon: "https://github.com/identicons/pronama.png"
+    accountName: 'hogehoge',
+    avater: "https://github.com/identicons/pronama.png"
   },
   {
     id: 2,
@@ -28,8 +28,8 @@ const postMock1: Post[] = [
     likes: 120,
     views: 280,
     memberViews: 50,
-    creatorName: 'hogehoge',
-    creatorIcon: "https://github.com/identicons/pronama.png"
+    accountName: 'hogehoge',
+    avater: "https://github.com/identicons/pronama.png"
   },
   {
     id: 3,
@@ -39,8 +39,8 @@ const postMock1: Post[] = [
     likes: 120,
     views: 280,
     memberViews: 50,
-    creatorName: 'hogehoge',
-    creatorIcon: "https://github.com/identicons/pronama.png"
+    accountName: 'hogehoge',
+    avater: "https://github.com/identicons/pronama.png"
   }
 ]
 
@@ -53,8 +53,8 @@ const postMock2: Post[] = [
     likes: 120,
     views: 280,
     memberViews: 50,
-    creatorName: 'hogehoge',
-    creatorIcon: "https://github.com/identicons/pronama.png"
+    accountName: 'hogehoge',
+    avater: "https://github.com/identicons/pronama.png"
   },
   {
     id: 5,
@@ -64,8 +64,8 @@ const postMock2: Post[] = [
     likes: 120,
     views: 280,
     memberViews: 50,
-    creatorName: 'hogehoge',
-    creatorIcon: "https://github.com/identicons/pronama.png"
+    accountName: 'hogehoge',
+    avater: "https://github.com/identicons/pronama.png"
   },
   {
     id: 6,
@@ -75,8 +75,8 @@ const postMock2: Post[] = [
     likes: 120,
     views: 280,
     memberViews: 50,
-    creatorName: 'hogehoge',
-    creatorIcon: "https://github.com/identicons/pronama.png"
+    accountName: 'hogehoge',
+    avater: "https://github.com/identicons/pronama.png"
   },
   // その他の投稿データ
 ];
