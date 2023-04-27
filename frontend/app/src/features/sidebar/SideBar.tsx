@@ -3,8 +3,7 @@ import {
   Box,
   Flex,
   Icon,
-  Text,
-  Link
+  Text
 } from "@/features/components";
 import {
   FaHome,
@@ -36,7 +35,7 @@ const NavItem = ({ icon, children, href }: NavItemProps) => {
       onMouseLeave={() => setHover(false)}
     >
       <Flex alignItems="center">
-        {icon && <Icon as={icon} boxSize="30px" mr={6} />}
+        {icon && <Icon as={icon} boxSize="2em" mr={6} />}
         <Text fontWeight={hover ? "bold" : "normal"}>{children}</Text>
       </Flex>
     </Box>
