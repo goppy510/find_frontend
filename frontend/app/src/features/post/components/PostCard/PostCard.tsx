@@ -26,7 +26,8 @@ export default function PostCard({ post }: PostCardProps) {
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
-      w="330px"
+      w="100%"
+      h="20em"
       boxShadow="xl"
       _hover={{ bg: "gray.100" }}
     >
@@ -39,8 +40,8 @@ export default function PostCard({ post }: PostCardProps) {
             "description description description"
             "memberViews likes views"
           `}
-          templateRows="120px 1fr 20px 70px 1fr"
-          templateColumns="110px 110px 110px"
+          templateRows="1fr 0.25fr 0.25fr 0.25fr 8.25fr"
+          templateColumns="4fr 4fr 4fr"
         >
           <GridItem area="categoryIcon">
             <CategoryIcon category={post.category} />

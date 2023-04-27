@@ -18,7 +18,7 @@ export default function Description({ description }: DescriptionProps) {
         WebkitLineClamp: 2,
         WebkitBoxOrient: "vertical"
       }}
-      height="50px"
+      height="3em"
     >
       {description}
     </Box>

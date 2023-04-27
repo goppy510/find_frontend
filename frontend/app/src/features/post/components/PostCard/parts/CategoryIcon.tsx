@@ -11,7 +11,7 @@ type CategroyProps = {
 export default function CategoryIcon({ category }: CategroyProps) {
 
   return (
-    <Box height="120px">
+    <Box height="7em">
       <CommonCategoryIcon category={category} />
     </Box>
   );
