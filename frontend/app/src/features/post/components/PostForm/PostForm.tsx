@@ -1,20 +1,22 @@
 "use client"; // appディレクトリはSSRなのでクライアントコンポーネントにするには最上部にこの宣言が必要
 import { useState } from 'react';
-import { useForm } from 'react-hook-form'
+import { useForm, RegisterOptions } from 'react-hook-form'
 import { useRouter } from 'next/navigation';
 import {
   Box,
   Heading,
   Container,
   Stack,
-  FormControl,
-  FormLabel,
-  Button,
-  Select,
-  Textarea,
-  FormHelperText,
-  FormErrorMessage
+  Button
 } from "@/features/components";
+import {
+  Model,
+  Title,
+  Description,
+  Prompt,
+  ExampleInput,
+  ExampleOutput
+} from "@/features/post/components/PostForm/parts/PostForm/index";
 import { FormData } from "@/features/post/types/post-types";
 import Confirmation from "@/features/post/components/PostForm/PostConfirmation";
 
@@ -38,20 +40,13 @@ export default function PostForm() {
 
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-
-  // gptモデル
-  const handleModelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const { value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      model: value,
-    }));
-  };
-
-  // modelバリデーション
-  const modelRegister = register('model');
-
-  const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>, maxLength: number, field: string) => {
+  const handleTextChange = (
+    event:
+      | React.ChangeEvent<HTMLTextAreaElement>
+      | React.ChangeEvent<HTMLSelectElement>,
+    field: string,
+    maxLength: number = Infinity
+  ) => {
     const value = event.target.value;
     if (value.length <= maxLength) {
       setFormData((prevFormData) => ({
@@ -61,55 +56,71 @@ export default function PostForm() {
     }
   };
 
+  type FieldName = 'model' | 'title' | 'description' | 'prompt' | 'exampleInput' | 'exampleOutput';
+
+  const registerField = (
+    fieldName: FieldName,
+    isRequired: boolean = false,
+    maxLength: number = Infinity
+  ) => {
+    const registerOptions: RegisterOptions = {};
+  
+    if (isRequired) {
+      registerOptions.required = '必須項目です';
+    }
+  
+    if (maxLength) {
+      registerOptions.maxLength = {
+        value: maxLength,
+        message: `${maxLength}文字以下で入力してください`,
+      };
+    }
+  
+    return register(fieldName, registerOptions);
+  };
+
+  // gptモデル
+  const handleModelChange = (event: React.ChangeEvent<HTMLSelectElement>) => handleTextChange(event, 'model');
+
+  // modelバリデーション
+  const modelRegister = registerField('model');
+
+
+
   // title文字数チェック
   const MAX_TITLE_LENGTH = 50;
-  const handleTitleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, MAX_TITLE_LENGTH, 'title');
+  const handleTitleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, 'title', MAX_TITLE_LENGTH);
 
   // titleバリデーション
-  const titleRegister = register('title', {
-    required: '必須項目です',
-    maxLength: { value: MAX_TITLE_LENGTH, message: `${MAX_TITLE_LENGTH}文字以下で入力してください` }
-  });
+  const titleRegister = registerField('title', true, MAX_TITLE_LENGTH);
 
   // description文字数チェック
   const MAX_DESCRIPTION_LENGTH = 500;
-  const handleDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, MAX_DESCRIPTION_LENGTH, 'description');
+  const handleDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, 'description', MAX_DESCRIPTION_LENGTH);
 
   // descriptionバリデーション
-  const descriptionRegister = register('description', {
-    required: '必須項目です',
-    maxLength: { value: MAX_DESCRIPTION_LENGTH, message: `${MAX_DESCRIPTION_LENGTH}文字以下で入力してください` }
-  });
+  const descriptionRegister = registerField('description', true, MAX_DESCRIPTION_LENGTH);
 
   // prompt文字数チェック
   const MAX_PROMPT_LENGTH = 2048;
-  const handlePromptChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, MAX_PROMPT_LENGTH, 'prompt');
+  const handlePromptChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, 'prompt', MAX_PROMPT_LENGTH);
 
   // promptバリデーション
-  const promptRegister = register('prompt', {
-    required: '必須項目です',
-    maxLength: { value: MAX_PROMPT_LENGTH, message: `${MAX_PROMPT_LENGTH}文字以下で入力してください` }
-  });
+  const promptRegister = registerField('prompt', true, MAX_PROMPT_LENGTH);
 
   // 入力例文字数チェック
   const MAX_EXAMPLE_INPUT_LENGTH = 100;
-  const handleExampleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, MAX_EXAMPLE_INPUT_LENGTH, 'exampleInput');
+  const handleExampleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, 'exampleInput', MAX_EXAMPLE_INPUT_LENGTH);
 
   // exampleInputバリデーション
-  const exampleInputRegister = register('exampleInput', {
-    maxLength: { value: MAX_EXAMPLE_INPUT_LENGTH, message: `${MAX_EXAMPLE_INPUT_LENGTH}文字以下で入力してください` }
-  });
+  const exampleInputRegister = registerField('exampleInput', true, MAX_EXAMPLE_INPUT_LENGTH);
 
   // 出力例文字数チェック
   const MAX_EXAMPLE_OUTPUT_LENGTH = 2048;
-  const handleExampleOutputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, MAX_EXAMPLE_OUTPUT_LENGTH, 'exampleOutput');
+  const handleExampleOutputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, 'exampleOutput', MAX_EXAMPLE_OUTPUT_LENGTH);
 
   // 出力例文字数チェック
-  const exampleOutputRegister = register('exampleOutput', {
-    required: '必須項目です',
-    maxLength: { value: MAX_EXAMPLE_OUTPUT_LENGTH, message: `${MAX_EXAMPLE_OUTPUT_LENGTH}文字以下で入力してください` }
-  });
-
+  const exampleOutputRegister = registerField('exampleOutput', true, MAX_EXAMPLE_OUTPUT_LENGTH);
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
@@ -126,7 +137,6 @@ export default function PostForm() {
   const handleBackButtonClick = () => {
     setShowConfirmation(false);
   };
-
 
   // 投稿ボタン（子コンポーネントにバインドしていて、そっちで実行される）
   const router = useRouter();
@@ -167,101 +177,57 @@ export default function PostForm() {
             <Stack spacing="6">
               <Stack spacing="5">
                 {/* モデル */}
-                <FormControl>
-                  <FormLabel htmlFor="displayName">モデル</FormLabel>
-                  <Select
-                    id="model"
-                    {...modelRegister}
-                    value={formData.model}
-                    onChange={handleModelChange}
-                  >
-                    <option value='ChatGPT-3.5' selected>ChatGPT-3.5</option>
-                    <option value='ChatGPT-4'>ChatGPT-4</option>
-                  </Select>
-                </FormControl>
+                <Model
+                  text={formData.model}
+                  handleChange={handleModelChange}
+                  register={modelRegister}
+                />
 
                 {/* タイトル */}
-                <FormControl isInvalid={Boolean(errors.title)}>
-                  <FormLabel htmlFor="title">タイトル</FormLabel>
-                  <Textarea
-                    id="title"
-                    {...titleRegister}
-                    value={formData.title}
-                    onChange={handleTitleChange}
-                  />
-                  <FormErrorMessage>
-                    {errors.title && errors.title.message}
-                  </FormErrorMessage>
-                  <FormHelperText>
-                    {formData.title.length}/{MAX_TITLE_LENGTH}
-                  </FormHelperText>
-                </FormControl>
+                <Title
+                  text={formData.title}
+                  errors={errors.title}
+                  maxLength={MAX_TITLE_LENGTH}
+                  handleChange={handleTitleChange}
+                  register={titleRegister}
+                />
 
                 {/* 概要欄 */}
-                <FormControl isInvalid={Boolean(errors.description)}>
-                  <FormLabel htmlFor="description">概要欄</FormLabel>
-                  <Textarea
-                    id="description"
-                    {...descriptionRegister}
-                    value={formData.description}
-                    onChange={handleDescriptionChange}
-                  />
-                  <FormErrorMessage>
-                    {errors.description && errors.description.message}
-                  </FormErrorMessage>
-                  <FormHelperText>
-                    {formData.description.length}/{MAX_DESCRIPTION_LENGTH}
-                  </FormHelperText>
-                </FormControl>
+                <Description
+                  text={formData.description}
+                  errors={errors.description}
+                  maxLength={MAX_DESCRIPTION_LENGTH}
+                  handleChange={handleDescriptionChange}
+                  register={descriptionRegister}
+                />
 
                 {/* プロンプト */}
-                <FormControl isInvalid={Boolean(errors.prompt)}>
-                  <FormLabel htmlFor="prompt">プロンプト</FormLabel>
-                  <Textarea
-                    id="prompt"
-                    {...promptRegister}
-                    value={formData.prompt}
-                    onChange={handlePromptChange}
-                  />
-                  <FormErrorMessage>
-                    {errors.prompt && errors.prompt.message}
-                  </FormErrorMessage>
-                  <FormHelperText>
-                    {formData.prompt.length}/{MAX_PROMPT_LENGTH}
-                  </FormHelperText>
-                </FormControl>
+                <Prompt
+                  text={formData.prompt}
+                  errors={errors.prompt}
+                  maxLength={MAX_PROMPT_LENGTH}
+                  handleChange={handlePromptChange}
+                  register={promptRegister}
+                />
 
                 {/* 入力例 */}
-                <FormControl>
-                  <FormLabel htmlFor="exampleInput">入力例（具体的な値などを入れてください）</FormLabel>
-                  <Textarea
-                    id="exampleInput"
-                    {...exampleInputRegister}
-                    value={formData.exampleInput}
-                    placeholder="[分野]:医療, [色]: 白"
-                    onChange={handleExampleInputChange}
-                  />
-                  <FormHelperText>
-                    {formData.exampleInput.length}/{MAX_EXAMPLE_INPUT_LENGTH}
-                  </FormHelperText>
-                </FormControl>
+                <ExampleInput
+                  text={formData.exampleInput}
+                  errors={errors.exampleInput}
+                  maxLength={MAX_EXAMPLE_INPUT_LENGTH}
+                  handleChange={handleExampleInputChange}
+                  register={exampleInputRegister}
+                />
 
                 {/* 出力例 */}
-                <FormControl isInvalid={Boolean(errors.exampleOutput)}>
-                  <FormLabel htmlFor="exampleOutput">出力例（ChatGPTが回答した内容を書いてください）</FormLabel>
-                  <Textarea
-                    id="exampleOutput"
-                    {...exampleOutputRegister}
-                    value={formData.exampleOutput}
-                    onChange={handleExampleOutputChange}
-                  />
-                  <FormErrorMessage>
-                    {errors.exampleOutput && errors.exampleOutput.message}
-                  </FormErrorMessage>
-                  <FormHelperText>
-                    {formData.exampleOutput.length}/{MAX_EXAMPLE_OUTPUT_LENGTH}
-                  </FormHelperText>
-                </FormControl>
+                <ExampleOutput
+                  text={formData.exampleOutput}
+                  errors={errors.exampleOutput}
+                  maxLength={MAX_EXAMPLE_OUTPUT_LENGTH}
+                  handleChange={handleExampleOutputChange}
+                  register={exampleOutputRegister}
+                />
+
               </Stack>
               <Stack spacing="6">
                 <Button
