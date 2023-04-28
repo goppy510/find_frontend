@@ -16,7 +16,7 @@ import {
 
 type Props = {
   title: string;
-  avater: string;
+  avatar: string;
   accountLink: string;
   accountName: string;
   rating: number;
@@ -29,7 +29,7 @@ type Props = {
 
 export default function DetailHeader({
   title,
-  avater,
+  avatar,
   accountLink,
   accountName,
   rating,
@@ -44,7 +44,7 @@ export default function DetailHeader({
       <Box display={{base: 'block', md: 'flex'}}>
         <Box w={{ base: '100%', md: '50%'}} >
           <Flex justifyContent="space-between" alignItems="center" my="5">
-            <Creator avater={avater} accountLink={accountLink} accountName={accountName} />
+            <Creator avatar={avatar} accountLink={accountLink} accountName={accountName} />
             <Box>
               <Rating rating={rating} />
             </Box>

@@ -16,7 +16,7 @@ export interface PostDetail {
   id: number;
   accountName: string;
   accountLink: string;
-  avater: string;
+  avatar: string;
   title: string;
   description: string;
   exampleInput: string;
@@ -47,7 +47,7 @@ export interface FormData {
 export interface Header {
   accountName: string;
   accountLink: string;
-  avater: string;
+  avatar: string;
   title: string;
   likes: number;
   views: number;
