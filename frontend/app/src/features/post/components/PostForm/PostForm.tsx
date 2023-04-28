@@ -51,17 +51,19 @@ export default function PostForm() {
   // modelバリデーション
   const modelRegister = register('model');
 
-  // title文字数チェック
-  const MAX_TITLE_LENGTH = 50;
-  const handleTitleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>, maxLength: number, field: string) => {
     const value = event.target.value;
-    if (value.length <= MAX_TITLE_LENGTH) {
+    if (value.length <= maxLength) {
       setFormData((prevFormData) => ({
         ...prevFormData,
-        title: value,
+        [field]: value,
       }));
     }
   };
+
+  // title文字数チェック
+  const MAX_TITLE_LENGTH = 50;
+  const handleTitleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, MAX_TITLE_LENGTH, 'title');
 
   // titleバリデーション
   const titleRegister = register('title', {
@@ -71,34 +73,17 @@ export default function PostForm() {
 
   // description文字数チェック
   const MAX_DESCRIPTION_LENGTH = 500;
-  const handleDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const value = event.target.value;
-    if (value.length <= MAX_DESCRIPTION_LENGTH) {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        description: value,
-      }));
-    }
-  };
+  const handleDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, MAX_DESCRIPTION_LENGTH, 'description');
 
   // descriptionバリデーション
   const descriptionRegister = register('description', {
     required: '必須項目です',
     maxLength: { value: MAX_DESCRIPTION_LENGTH, message: `${MAX_DESCRIPTION_LENGTH}文字以下で入力してください` }
   });
-  
 
   // prompt文字数チェック
   const MAX_PROMPT_LENGTH = 2048;
-  const handlePromptChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const value = event.target.value;
-    if (value.length <= MAX_PROMPT_LENGTH) {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        prompt: value,
-      }));
-    }
-  };
+  const handlePromptChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, MAX_PROMPT_LENGTH, 'prompt');
 
   // promptバリデーション
   const promptRegister = register('prompt', {
@@ -108,15 +93,7 @@ export default function PostForm() {
 
   // 入力例文字数チェック
   const MAX_EXAMPLE_INPUT_LENGTH = 100;
-  const handleExampleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const value = event.target.value;
-    if (value.length <= MAX_EXAMPLE_INPUT_LENGTH) {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        exampleInput: value,
-      }));
-    }
-  };
+  const handleExampleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, MAX_EXAMPLE_INPUT_LENGTH, 'exampleInput');
 
   // exampleInputバリデーション
   const exampleInputRegister = register('exampleInput', {
@@ -125,15 +102,7 @@ export default function PostForm() {
 
   // 出力例文字数チェック
   const MAX_EXAMPLE_OUTPUT_LENGTH = 2048;
-  const handleExampleOutputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const value = event.target.value;
-    if (value.length <= MAX_EXAMPLE_OUTPUT_LENGTH) {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        exampleOutput: value,
-      }));
-    }
-  };
+  const handleExampleOutputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, MAX_EXAMPLE_OUTPUT_LENGTH, 'exampleOutput');
 
   // 出力例文字数チェック
   const exampleOutputRegister = register('exampleOutput', {
