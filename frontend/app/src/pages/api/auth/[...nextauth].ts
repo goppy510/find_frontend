@@ -1,17 +1,29 @@
-import NextAuth from 'next-auth';
-import EmailProvider from "next-auth/providers/email"
-import GoogleProvider from "next-auth/providers/google"
+import NextAuth, { NextAuthOptions } from 'next-auth';
+import GoogleProvider from "next-auth/providers/google";
 
-export default NextAuth({
+type ClientType = {
+  clientId: string;
+  clientSecret: string;
+};
+
+const authOptions: NextAuthOptions = {
   providers: [
-    EmailProvider({
-      server: process.env.EMAIL_SERVER,
-      from: process.env.EMAIL_FROM,
-      // maxAge: 24 * 60 * 60, // How long email links are valid for (default 24h)
-    }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
-    })
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
+    } as ClientType),
   ],
-});
+  callbacks: {
+    async signIn({ account, profile }) {
+      if (account?.provider === 'google') {
+        return true
+      } else {
+        return false
+      }
+    },
+  },
+  secret: process.env.NEXTAUTH_SECRET
+  // 他の設定...
+};
+
+export default NextAuth(authOptions);
