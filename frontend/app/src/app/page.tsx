@@ -1,9 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import {
-  Grid,
-  GridItem
-} from "@/features/components";
+import { Grid, GridItem } from "@/features/components";
 import PostCard from "@/features/post/components/PostCard/PostCard";
 import { Post } from "@/features/post/types/post-types";
 
