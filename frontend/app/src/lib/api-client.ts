@@ -1,7 +1,7 @@
 import axios from "axios"
 import Cookies from "js-cookie"
 
-const baseURL = process.env.MAKELEAD_APP_API_ENDPOINT;
+const baseURL = process.env.MAKELEAD_APP_API_ENDPOINT || 'http://localhost:3000';
 
 // 共通ヘッダー
 const headers = {
