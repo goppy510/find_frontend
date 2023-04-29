@@ -1,18 +1,16 @@
-import './globals.css'
-import ProvidersWrapper from './ProvidersWrapper'
+import ProvidersWrapper from "./ProvidersWrapper"
 import Provider from "@/features/components/Provider"
 import Header from "@/features/header/Header"
-import Top from '@/features/top/Top'
-import SideBar from '@/features/sidebar/SideBar'
+import Top from "@/features/top/Top"
+import SideBar from "@/features/sidebar/SideBar"
 import Main from "@/features/main/Main"
 import Footer from "@/features/footer/Footer"
 import { Grid, GridItem } from "@/features/components";
+import { AppProps } from "next/app";
 
 export default function RootLayout({
   children
-}: {
-  children: React.ReactNode
-}) {
+}: { children: React.ReactNode }) {
   return (
     <html lang="ja">
       <head />
