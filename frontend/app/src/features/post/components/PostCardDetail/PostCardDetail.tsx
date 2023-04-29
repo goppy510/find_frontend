@@ -35,7 +35,7 @@ const postDetail: PostDetail = {
 export default function PostCardDetail({ id }: Props) {
 
   return (
-    <Box minH="100vh" maxW="1200px"  m="0 auto">
+    <Box minH="100vh" maxW="100%"  m="0 auto">
       <Thumbnail category={postDetail.category} />
       <DetailHeader
         title={postDetail.title}
