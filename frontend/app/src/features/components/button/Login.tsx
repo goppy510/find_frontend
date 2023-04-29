@@ -1,10 +1,13 @@
 "use client";
 import { Button } from "@/features/components";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { FC } from "react";
+import { NextPage } from 'next';
+import { useRouter } from "next/navigation";
 
-const LoginButton: FC = () => {
+const LoginButton: NextPage = () => {
   const { data: session } = useSession();
+
+  const router = useRouter();
 
   if (session && session.user) {
     return (
@@ -16,7 +19,10 @@ const LoginButton: FC = () => {
         _hover={{
           bg: "gray.300",
         }}
-        onClick={() => signOut()}
+        onClick={async() => {
+          await signOut({ redirect: false });
+          router.push("/");
+        }}
       >
         ログアウト
       </Button>
@@ -31,7 +37,9 @@ const LoginButton: FC = () => {
         _hover={{
           bg: "gray.300",
         }}
-        onClick={() => signIn()}
+        onClick={async() => {
+          await signIn();
+        }}
       >
         ログイン
       </Button>
