@@ -1,20 +1,42 @@
+"use client";
 import { Button } from "@/features/components";
-import NextLink from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { FC } from "react";
 
-export default function LoginButton() {
-  return (
-    <Button
-      as={NextLink}
-      fontSize="sm"
-      fontWeight={600}
-      color="black"
-      bg="gray.200"
-      href="/login"
-      _hover={{
-        bg: "gray.300",
-      }}
-    >
-      ログイン
-    </Button>
-  );
+const LoginButton: FC = () => {
+  const { data: session } = useSession();
+
+  if (session && session.user) {
+    return (
+      <Button
+        fontSize="sm"
+        fontWeight={600}
+        color="black"
+        bg="gray.200"
+        _hover={{
+          bg: "gray.300",
+        }}
+        onClick={() => signOut()}
+      >
+        ログアウト
+      </Button>
+    );
+  } else {
+    return (
+      <Button
+        fontSize="sm"
+        fontWeight={600}
+        color="black"
+        bg="gray.200"
+        _hover={{
+          bg: "gray.300",
+        }}
+        onClick={() => signIn()}
+      >
+        ログイン
+      </Button>
+    );
+  }
 }
+
+export default LoginButton;

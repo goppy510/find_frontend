@@ -7,7 +7,7 @@ import {
   Button,
   Text
 } from "@/features/components";
-import { FormData } from "@/features/post/types/post_types";
+import { FormData } from "@/features/post/types/post-types";
 
 type ConfirmationProps = {
   formData: FormData;
