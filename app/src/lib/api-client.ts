@@ -1,47 +1,59 @@
-import axios from "axios"
-import Cookies from "js-cookie"
+import axios from "axios";
 
 const baseURL = process.env.MAKELEAD_APP_API_ENDPOINT || 'http://localhost:3000';
 
-// 共通ヘッダー
-const headers = {
-  "Content-Type": "application/json",
-};
+// axios の初期設定
+// 例：　await apiClient.get('/endopoint')
+const apiClient = axios.create({
+  baseURL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
-// axios　の初期設定
-export const ApiClient = axios.create({ baseURL, headers });
+// リクエスト時にトークンをヘッダーに含める
+apiClient.interceptors.request.use((config) => {
+  const csrfToken = getCookie('csrf-token');  // CSRFトークンを取得するための関数
+  if (csrfToken) {
+    config.headers['X-CSRF-Token'] = csrfToken;
+  }
+  return config;
+}, (error) => {
+  return Promise.reject(error);
+});
 
 // レスポンスのエラー判定処理
-ApiClient.interceptors.response.use(
+apiClient.interceptors.response.use(
   (response) => {
-    Cookies.set("uid", response.headers["uid"]);
-    Cookies.set("client", response.headers["client"])
-    Cookies.set("access-token", response.headers['access-token']);
     return response;
   },
   (error) => {
-    Cookies.remove("uid");
-    Cookies.remove("client");
-    Cookies.remove("access-token");
-    console.log(error);
-    switch(error?.response?.status) {
+    const status = error?.response?.status;
+    switch (status) {
       case 401:
+        console.error('Unauthorized error');
+        // ログアウト処理など
         break;
       case 404:
+        console.error('Not found error');
+        // 404エラー処理
+        break;
+      case 500:
+        console.error('Internal server error');
+        // 500エラー処理
         break;
       default:
-        console.log("== internal server error");
+        console.error('Unexpected error occurred');
+        break;
     }
-
-    const errorMessage = (error.response?.data?.message || "").split(",");
-    throw new Error(errorMessage);
+    return Promise.reject(error);
   }
 );
 
-// token付与等のリクエスト処理の共通化
-ApiClient.interceptors.request.use(async (request: any) => {
-    request.headers["uid"] = Cookies.get("uid");
-    request.headers["client"] = Cookies.get("client");
-    request.headers["access-token"] = Cookies.get("access-token");
-    return request;
-});
+const getCookie = (name: string): string | undefined => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop()?.split(';').shift();
+}
+
+export default apiClient;
