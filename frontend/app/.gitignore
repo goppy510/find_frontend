@@ -39,4 +39,4 @@ next-env.d.ts
 
 /.vscode/*
 
-/../../find_frontend.code-workspace
+../../find_frontend.code-workspace
