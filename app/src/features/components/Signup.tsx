@@ -1,15 +1,61 @@
-import { Box, Container, Heading, Stack, HStack, Button, FormControl, FormLabel, Input, Checkbox, Divider } from "@/features/components";
-import NextLink from "next/link";
+'use client'
+import {
+  Box,
+  Container,
+  Stack,
+  HStack,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Checkbox
+} from "@/features/components";
+import apiClient from "@/lib/api-client";
+import { useState } from "react";
 
 export default function SignupWindow() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState(''); 
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
+
+  const isButtonEnabled = isChecked && password === confirmPassword && password !== '';
+
+  const buttonStyles = {
+    bg: isButtonEnabled ? "messenger.400" : "gray.300",
+    color: isButtonEnabled ? "white" : "gray.500",
+    cursor: isButtonEnabled ? "pointer" : "not-allowed",
+    _hover: isButtonEnabled ? { bg: "messenger.500" } : {}
+  };
+
+  const handleSignup = async () => {
+    if (!isButtonEnabled) {
+      return;
+    }
+  
+    try {
+      const endpoint = '/api/users/signup'
+      const response = await apiClient.post(endpoint, {
+        email, 
+        password
+      });
+      if (response.status === 200) {
+        // 成功時の処理、例：トークンの保存や画面遷移など
+      } else {
+        setErrorMessage('会員登録に失敗しました。');
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+      setErrorMessage('会員登録に失敗しました。');
+    }
+  };
+
   return (
     <Container maxW="lg" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }}>
     <Stack spacing="8">
       <Stack spacing="6">
         {/* <Logo /> */}
-        <Stack spacing={{ base: '2', md: '3' }} textAlign="center">
-          <Heading size={{ base: 'xs', md: 'sm' }}>新規会員登録する</Heading>
-        </Stack>
       </Stack>
       <Box
         py={{ base: '0', sm: '8' }}
@@ -20,59 +66,46 @@ export default function SignupWindow() {
       >
         <Stack spacing="6">
           <Stack spacing="5">
-            {/* 表示名 */}
-            <FormControl>
-              <FormLabel htmlFor="display_name">表示名</FormLabel>
-              <Input id="display_name" type="text" />
-            </FormControl>
-
-            {/* アカウントID */}
-            <FormControl>
-              <FormLabel htmlFor="acount_id">アカウントID</FormLabel>
-              <Input id="acount_id" type="acount_id" />
-            </FormControl>
-
             {/* メールアドレス */}
             <FormControl>
               <FormLabel htmlFor="email">メールアドレス</FormLabel>
-              <Input id="email" type="email" />
+              <Input 
+                id="email" 
+                type="email" 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)} 
+              />
             </FormControl>
 
             {/* パスワード */}
             <FormControl>
               <FormLabel htmlFor="email">パスワード（半角記号英数字）</FormLabel>
-              <Input id="password" type="password" />
+                <Input 
+                  id="password" 
+                  type="password" 
+                  value={password} 
+                  onChange={(e) => setPassword(e.target.value)} 
+                />
             </FormControl>
 
             {/* パスワード確認用 */}
             <FormControl>
               <FormLabel htmlFor="email">パスワード確認用</FormLabel>
-              <Input id="password_confirm" type="password" />
+                <Input 
+                  id="password_confirm" 
+                  type="password" 
+                  value={confirmPassword} 
+                  onChange={(e) => setConfirmPassword(e.target.value)} 
+                />
             </FormControl>
           </Stack>
           <HStack justify="space-between">
-            <Checkbox>利用規約に同意する</Checkbox>
+          <Checkbox onChange={(e) => setIsChecked(e.target.checked)}>利用規約に同意する</Checkbox>
           </HStack>
           <Stack spacing="6">
-            <Button
-              as={NextLink}
-              fontSize="sm"
-              fontWeight={600}
-              color="white"
-              bg="messenger.400"
-              href="/signup"
-              _hover={{
-                bg: "messenger.500",
-              }}
-            >登録する（無料）</Button>
-            {/* <HStack>
-              <Divider />
-              <Text fontSize="sm" whiteSpace="nowrap" color="muted">
-                or continue with
-              </Text>
-              <Divider />
-            </HStack>
-            OAuthButtonGroup */}
+            <Button {...buttonStyles} onClick={handleSignup} disabled={!isButtonEnabled}>
+              登録する
+            </Button>
           </Stack>
         </Stack>
       </Box>
