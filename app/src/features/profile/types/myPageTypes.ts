@@ -1,5 +1,5 @@
 // アカウントに表示する内容
-export interface AccountType {
+export interface MyPageType {
   id: number;
   accountName: string;
   avatar: string;
