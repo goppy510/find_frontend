@@ -4,7 +4,7 @@ import {
   Flex,
   Icon,
   Text
-} from "@/features/components";
+} from "@chakra-ui/react";
 import {
   FaHome,
   FaUser,
@@ -42,12 +42,12 @@ const NavItem = ({ icon, children, href }: NavItemProps) => {
   );
 };
 
-export default function SideBar() {
+export default function Sidebar() {
   return (
     <Box py={4}>
       <Flex justifyContent="center" direction="column">
         <NavItem icon={FaHome} href="/">ホーム</NavItem>
-        <NavItem icon={FaUser} href="/account">マイページ</NavItem>
+        <NavItem icon={FaUser} href="/profile">マイページ</NavItem>
       </Flex>
     </Box>
   );

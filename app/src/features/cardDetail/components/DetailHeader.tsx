@@ -2,7 +2,7 @@ import {
   Box,
   Flex,
   Divider
-} from "@/features/components";
+} from "@chakra-ui/react";
 import {
   Rating,
   ReadButton,

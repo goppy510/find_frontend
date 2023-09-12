@@ -1,4 +1,4 @@
-import PostForm from "@/features/post/components/PostForm/PostForm"
+import CardForm from "@/features/cardForm/components/CardForm"
 
 export default function Post({
   children,
@@ -6,6 +6,6 @@ export default function Post({
   children: React.ReactNode
 }) {
   return (
-      <PostForm />
+      <CardForm />
   );
 }

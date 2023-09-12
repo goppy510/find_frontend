@@ -1,4 +1,4 @@
-import ActivationWindow from "@/features/components/Activation"
+import ActivationWindow from "@/features/activation/components/Activation"
 
 export default function Activation({
   children,

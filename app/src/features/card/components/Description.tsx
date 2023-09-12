@@ -1,6 +1,6 @@
 import {
   Box
-} from "@/features/components";
+} from "@chakra-ui/react";
 
 type DescriptionProps = {
   description: string;

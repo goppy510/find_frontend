@@ -1,7 +1,7 @@
 import {
   Box,
   Flex
-} from "@/features/components";
+} from "@chakra-ui/react";
 import {
   FaBookReader
 } from 'react-icons/fa';

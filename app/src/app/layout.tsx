@@ -1,12 +1,12 @@
-import ProvidersWrapper from "./ProvidersWrapper"
-import Provider from "@/features/components/Provider"
-import Header from "@/features/header/Header"
-import Top from "@/features/top/Top"
-import SideBar from "@/features/sidebar/SideBar"
-import Main from "@/features/main/Main"
-import Footer from "@/features/footer/Footer"
-import { Grid, GridItem } from "@/features/components";
-import { AppProps } from "next/app";
+"use client"
+import { ChakraProvider } from "@chakra-ui/react";
+import ProvidersWrapper from "@/components/layouts/ProvidersWrapper/ProvidersWrapper";
+import Header from "@/components/layouts/Header/Header";
+import Top from "@/components/layouts/Top/Top";
+import Sidebar from "@/components/layouts/Sidebar/Sidebar";
+import Main from "@/components/layouts/Main/Main";
+import Footer from "@/components/layouts/Footer/Footer";
+import { Grid, GridItem } from "@chakra-ui/react";
 
 export default function RootLayout({
   children
@@ -15,13 +15,13 @@ export default function RootLayout({
     <html lang="ja">
       <head />
       <body>
-        <ProvidersWrapper>
-          <Provider>
+        <ChakraProvider>
+          <ProvidersWrapper>
             <Grid
               templateAreas={`
                 "header header header"
-                "sideBar top space"
-                "sideBar main space"
+                "sidebar top space"
+                "sidebar main space"
                 "footer footer footer"
               `}
               templateRows="0.5fr 1fr 10fr 0.5fr"
@@ -31,8 +31,8 @@ export default function RootLayout({
               <GridItem area="header">
                 <Header />
               </GridItem>
-              <GridItem area="sideBar">
-                <SideBar />
+              <GridItem area="sidebar">
+                <Sidebar />
               </GridItem>
               <GridItem area="top">
                 <Top />
@@ -44,8 +44,8 @@ export default function RootLayout({
                 <Footer />
               </GridItem>
             </Grid>
-          </Provider>
-        </ProvidersWrapper>
+          </ProvidersWrapper>
+        </ChakraProvider>
       </body>
     </html>
   );

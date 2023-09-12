@@ -1,4 +1,4 @@
-import { Tag, TagLabel } from "@/features/components";
+import { Tag, TagLabel } from "@chakra-ui/react";
 import * as React from 'react';
 
 type CategoryTags = {
@@ -24,7 +24,7 @@ const categoryTags: CategoryTags = {
   "その他": { colorScheme: "yellow" },
 };
 
-export default function CategoryTag({
+export default function CategoryTagMapping({
   category,
   size = "md",
 }: {

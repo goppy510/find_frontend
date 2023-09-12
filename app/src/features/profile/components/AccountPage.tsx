@@ -15,17 +15,16 @@ import {
   Grid,
   GridItem,
   Icon
-} from "@/features/components";
+} from "@chakra-ui/react";
 import { FaEye, FaBookReader, FaThumbsUp } from 'react-icons/fa';
-import NextLink from "next/link";
-import { AccountType } from "@/features/account/types/account-types";
+import { MyPageType } from "@/features/profile/types/myPageTypes";
 
-type AccountProps = {
-  account: AccountType;
+type MyPageProps = {
+  account: MyPageType;
 };
 
 
-export default function AccountPage({ account }: AccountProps) {
+export default function MyPage({ account }: MyPageProps) {
   return (
     <Grid
       templateAreas={`

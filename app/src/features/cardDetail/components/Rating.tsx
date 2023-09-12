@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, Text } from "@/features/components";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { FaStar, FaStarHalf, FaRegStar } from 'react-icons/fa';
 
 type Props = {

@@ -5,11 +5,11 @@ import {
   Heading,
   Spacer,
   ButtonGroup
-} from "@/features/components";
+} from "@chakra-ui/react";
 import NextLink from "next/link";
 
-import LoginButton from "@/features/components/button/Login";
-import SignUpButton from "@/features/components/button/Signup";
+import LoginButton from "@/features/login/components/LoginButton";
+import SignUpButton from "@/features/signup/components/SignupButton";
 
 export default function Header() {
   return (

@@ -3,7 +3,7 @@ import {
   Box,
   Grid,
   GridItem
-} from "@/features/components";
+} from "@chakra-ui/react";
 import {
   CategoryIcon,
   CategoryTag,
@@ -12,14 +12,14 @@ import {
   MemberViews,
   Likes,
   Views
-} from "@/features/post/components/PostCard/parts";
-import { Post } from "@/features/post/types/post-types";
+} from "@/features/card/components";
+import { Post } from "@/features/card/types/postTypes";
 
-type PostCardProps = {
+type CardProps = {
   post: Post;
 };
 
-export default function PostCard({ post }: PostCardProps) {
+export default function Card({ post }: CardProps) {
 
   return (
     <Box

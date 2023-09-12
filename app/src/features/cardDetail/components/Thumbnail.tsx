@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Flex } from "@/features/components";
-import CategoryIcon from "@/features/components/CategoryIcon";
+import { Box, Flex } from "@chakra-ui/react";
+import CategoryIcon from "@/features/card/components/CategoryIcon";
 
 type Props = {
   category: string;

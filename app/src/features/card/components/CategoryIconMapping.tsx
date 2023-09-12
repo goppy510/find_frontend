@@ -1,4 +1,4 @@
-import { Icon, Box } from "@/features/components";
+import { Icon, Box } from "@chakra-ui/react";
 import {
   FaLaptopCode,
   FaChartBar,
@@ -41,7 +41,7 @@ const categoryIcons: CategoryIcons = {
   "時事": { icon: <FaNewspaper style={{ width: 60, height: 60 }} />, bg: "orange.400" },
   "その他": { icon: <FaQuestion style={{ width: 60, height: 60 }} />, bg: "yellow.400" }
 };
-export default function CategoryIcon({ category }: { category: string }): JSX.Element {
+export default function CategoryIconMapping({ category }: { category: string }): JSX.Element {
   const { icon, bg } = categoryIcons[category] ?? { icon: <Icon />, bg: "gray.500" };
   // カテゴリに対応するアイコンと背景色が存在しない場合は、デフォルトのアイコンと色を使用する
   return (

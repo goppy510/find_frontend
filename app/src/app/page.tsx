@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { Grid, GridItem } from "@/features/components";
-import PostCard from "@/features/post/components/PostCard/PostCard";
-import { Post } from "@/features/post/types/post-types";
+import { Grid, GridItem } from "@chakra-ui/react";
+import Card from "@/features/card/components/Card";
+import { Post } from "@/features/card/types/postTypes";
 
 // 投稿データを定義する mock
 const postMock1: Post[] = [
@@ -127,7 +127,7 @@ export default function Home() {
     >
       {posts.map((post) => (
         <GridItem key={post.id}>
-          <PostCard post={post} />
+          <Card post={post} />
         </GridItem>
       ))}
       <div ref={bottomRef} style={{ height: "10px", backgroundColor: "transparent" }} />

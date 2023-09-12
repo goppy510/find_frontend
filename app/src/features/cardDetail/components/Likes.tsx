@@ -1,4 +1,4 @@
-import { Box, Flex } from "@/features/components";
+import { Box, Flex } from "@chakra-ui/react";
 import { FaThumbsUp } from 'react-icons/fa';
 
 type Props = {

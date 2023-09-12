@@ -1,14 +1,14 @@
 "use client";
-import { Box, Flex } from "@/features/components";
-import { PostDetail, PostId } from "@/features/post/types/post-types";
+import { Box, Flex } from "@chakra-ui/react";
+import { PostDetail, PostId } from "@/features/cardDetail/types/postTypes";
 import {
   DetailHeader,
   Thumbnail,
   Description,
   ExampleInput,
-  ExampleOutput
-} from "@/features/post/components/PostCardDetail/parts/index";
-import ReadButton from "@/features/components/button/Read";
+  ExampleOutput,
+  ReadButton
+} from "@/features/cardDetail/components/";
 
 type Props = {
   id: PostId;

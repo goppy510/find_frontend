@@ -1,5 +1,5 @@
 "use client";
-import { Tag, TagLabel, Box } from "@/features/components";
+import { Tag, TagLabel, Box } from "@chakra-ui/react";
 import * as React from "react";
 
 const categories = [

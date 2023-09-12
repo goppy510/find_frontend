@@ -1,4 +1,4 @@
-import { Box, Flex } from "@/features/components";
+import { Box, Flex } from "@chakra-ui/react";
 import { FaEye } from 'react-icons/fa';
 
 type StatProps = {

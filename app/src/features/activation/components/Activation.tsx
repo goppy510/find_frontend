@@ -8,11 +8,13 @@ import {
   FormLabel,
   Input
 } from "@/features/components";
+import { useRouter } from "next/navigation";
 import apiClient from "@/lib/api-client";
 import { useEffect, useState } from "react";
 
 export default function ActivationWindow() {
   const [message, setMessage] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -30,13 +32,16 @@ export default function ActivationWindow() {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (response.status === 200) {
-          setMessage('アクティベーションが完了しました。');
+          setMessage('本登録が完了しました。');
+          setTimeout(() => {
+            router.push('/login');
+          }, 2000);
         } else {
-          setMessage('アクティベーションに失敗しました。');
+          setMessage('本登録に失敗しました。');
         }
       } catch (error) {
         console.error('Activation failed:', error);
-        setMessage('アクティベーションに失敗しました。');
+        setMessage('本登録に失敗しました。');
       }
     };
 

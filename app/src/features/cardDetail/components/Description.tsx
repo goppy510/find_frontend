@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex } from "@/features/components";
+import { Box, Flex } from "@chakra-ui/react";
 
 type Props = {
   text: string;

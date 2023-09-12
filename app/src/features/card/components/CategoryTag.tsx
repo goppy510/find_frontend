@@ -1,7 +1,7 @@
 import {
   Box
-} from "@/features/components";
-import CommonCategoryTag from "@/features/components/CategoryTag";
+} from "@chakra-ui/react";
+import CategoryTagMapping from "@/features/card/components/CategoryTagMapping";
 
 type CategroyProps = {
   category: string;
@@ -11,7 +11,7 @@ export default function CategoryTag({ category }: CategroyProps) {
 
   return (
     <Box>
-      <CommonCategoryTag category={category} />
+      <CategoryTagMapping category={category} />
     </Box>
   );
 }
