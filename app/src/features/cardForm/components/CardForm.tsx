@@ -8,7 +8,7 @@ import {
   Container,
   Stack,
   Button
-} from "@/features/components";
+} from "@chakra-ui/react";
 import {
   Model,
   Title,
@@ -16,9 +16,9 @@ import {
   Prompt,
   ExampleInput,
   ExampleOutput
-} from "@/features/post/components/PostForm/parts/PostForm/index";
-import { FormData } from "@/features/post/types/post-types";
-import Confirmation from "@/features/post/components/PostForm/PostConfirmation";
+} from "@/features/cardForm/components";
+import { FormData } from "@/features/cardForm/types/postTypes";
+import Confirmation from "@/features/cardForm/components/CardConfirmation";
 
 const INITIAL_FORM_DATA: FormData = {
   model: "",
@@ -30,7 +30,7 @@ const INITIAL_FORM_DATA: FormData = {
 };
 
 
-export default function PostForm() {
+export default function CardForm() {
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
   const {
     handleSubmit,
