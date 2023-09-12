@@ -1,10 +1,6 @@
 "use client";
-import { Button } from "@/features/components";
-import { useSession, signIn, signOut } from "next-auth/react";
-import { NextPage } from 'next';
+import { Button } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { useRouter } from "next/navigation";
-
 
 
 export default function LoginButton() {
