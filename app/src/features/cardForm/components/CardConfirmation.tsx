@@ -6,8 +6,8 @@ import {
   Stack,
   Button,
   Text
-} from "@/features/components";
-import { FormData } from "@/features/post/types/post-types";
+} from "@chakra-ui/react";
+import { FormData } from "@/features/cardForm/types/postTypes";
 
 type ConfirmationProps = {
   formData: FormData;
