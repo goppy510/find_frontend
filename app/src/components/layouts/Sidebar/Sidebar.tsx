@@ -50,6 +50,7 @@ export default function Sidebar() {
     const token = localStorage.getItem('jwtToken');
     if (token) {
       setLoggedIn(true);
+
     }
   }, []);
 
