@@ -20,11 +20,10 @@ import { FaEye, FaBookReader, FaThumbsUp } from 'react-icons/fa';
 import { MyPageType } from "@/features/profile/types/myPageTypes";
 
 type MyPageProps = {
-  account: MyPageType;
+  profile: MyPageType;
 };
 
-
-export default function MyPage({ account }: MyPageProps) {
+export default function MyPage({ profile }: MyPageProps) {
   return (
     <Grid
       templateAreas={`
@@ -58,7 +57,7 @@ export default function MyPage({ account }: MyPageProps) {
               <Box ml="10px">
                 <Avatar
                   size="2xl"
-                  src={account.avatar}
+                  src={profile.avatar}
                   mx="auto" // アバターを中央に揃える
                   my="auto"
                 />
@@ -73,17 +72,17 @@ export default function MyPage({ account }: MyPageProps) {
                 <Box w="20em">
                   <StatGroup spacing={6}>
                     <Stat>
-                      <StatNumber>{account.memberViews}</StatNumber>
+                      <StatNumber>{profile.memberViews}</StatNumber>
                       <StatLabel>閲覧数 <Icon as={FaBookReader} /></StatLabel>
                     </Stat>
 
                     <Stat>
-                      <StatNumber>{account.likes}</StatNumber>
+                      <StatNumber>{profile.likes}</StatNumber>
                       <StatLabel>いいね！ <Icon as={FaThumbsUp} /></StatLabel>
                     </Stat>
 
                     <Stat>
-                      <StatNumber>{account.views}</StatNumber>
+                      <StatNumber>{profile.views}</StatNumber>
                       <StatLabel>表示数 <Icon as={FaEye} /></StatLabel>
                     </Stat>
                   </StatGroup>
@@ -99,7 +98,7 @@ export default function MyPage({ account }: MyPageProps) {
             fontSize="2em"
             fontWeight="bold"
           >
-            {account.accountName}
+            {profile.name}
           </Box>
         </Flex>
       </GridItem>
