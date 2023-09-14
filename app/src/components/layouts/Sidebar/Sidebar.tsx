@@ -65,7 +65,7 @@ export default function Sidebar() {
     <Box py={4}>
       <Flex justifyContent="center" direction="column">
         <NavItem icon={FaHome} href="/">ホーム</NavItem>
-        <NavItem icon={FaUser} href="/profile">マイページ</NavItem>
+        <NavItem icon={FaUser} href="/profile/mypage">マイページ</NavItem>
         {loggedIn && <NavItem icon={FaRegFrown} href="/logout" onClick={handleLogout}>ログアウト</NavItem>}
       </Flex>
     </Box>
