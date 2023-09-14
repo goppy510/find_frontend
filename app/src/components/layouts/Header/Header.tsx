@@ -41,10 +41,6 @@ export default function Header() {
     };
   }, []);// 空の依存配列を渡すことで、このエフェクトはコンポーネントのマウント時にのみ実行されます。
 
-  const handleLoginSuccess = () => {
-    setLoggedIn(true);
-  };
-
   return (
     <Box as="header" className="header" position="fixed" top={0} left={0} right={0} zIndex={999}>
       <Flex
