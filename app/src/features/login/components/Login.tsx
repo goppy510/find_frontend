@@ -29,7 +29,7 @@ export default function LoginWindow() {
       });
       if (response.status === 200) {
         localStorage.setItem('jwtToken', response.data.token);
-        router.push('/');
+        window.location.href = '/';
       } else {
         setErrorMessage('ログインに失敗しました。');
       }

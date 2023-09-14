@@ -1,4 +1,5 @@
 "use client";
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Flex,
@@ -12,8 +13,40 @@ import LoginButton from "@/features/login/components/LoginButton";
 import SignUpButton from "@/features/signup/components/SignupButton";
 
 export default function Header() {
+  // ログイン状態を監視するための状態
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  // コンポーネントがマウントされたときにlocalStorageをチェック
+  useEffect(() => {
+    const checkToken = () => {
+      const token = localStorage.getItem('jwtToken');
+      setLoggedIn(Boolean(token));
+    };
+
+    // 初回マウント時の確認
+    checkToken();
+
+    // storageイベントのリスナーを設定
+    const handleStorageChange = (e) => {
+      if (e.key === 'jwtToken') {
+        checkToken();
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    // クリーンアップ関数
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);// 空の依存配列を渡すことで、このエフェクトはコンポーネントのマウント時にのみ実行されます。
+
+  const handleLoginSuccess = () => {
+    setLoggedIn(true);
+  };
+
   return (
-    <Box as="header" className="header" position="fixed" top={0} left={0} right={0} zIndex={999} >
+    <Box as="header" className="header" position="fixed" top={0} left={0} right={0} zIndex={999}>
       <Flex
         bg="white"
         color="gray.600"
@@ -29,10 +62,15 @@ export default function Header() {
             <NextLink href="/">PromptData</NextLink>
           </Heading>
           <Spacer />
-          <ButtonGroup gap='2'>
-            <LoginButton />
-            <SignUpButton />
-          </ButtonGroup>
+          {
+            // loggedInがfalseの場合のみ、ログインボタンと会員登録ボタンを表示
+            !loggedIn && (
+              <ButtonGroup gap='2'>
+                <LoginButton />
+                <SignUpButton />
+              </ButtonGroup>
+            )
+          }
         </Flex>
       </Flex>
     </Box>
