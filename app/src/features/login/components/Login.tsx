@@ -8,7 +8,6 @@ import {
   FormLabel,
   Input
 } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
 import apiClient from "@/lib/api-client";
 import { useState } from "react";
 
@@ -16,7 +15,6 @@ export default function LoginWindow() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const router = useRouter(); 
 
   const handleLogin = async () => {
     try {
