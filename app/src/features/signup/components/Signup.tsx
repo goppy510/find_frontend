@@ -9,7 +9,7 @@ import {
   FormLabel,
   Input,
   Checkbox
-} from "@/features/components";
+} from "@chakra-ui/react";
 import apiClient from "@/lib/api-client";
 import { useState } from "react";
 
