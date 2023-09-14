@@ -1,16 +1,18 @@
-"use client"
-import { ChakraProvider } from "@chakra-ui/react";
-import ProvidersWrapper from "@/components/layouts/ProvidersWrapper/ProvidersWrapper";
-import Header from "@/components/layouts/Header/Header";
-import Top from "@/components/layouts/Top/Top";
-import Sidebar from "@/components/layouts/Sidebar/Sidebar";
-import Main from "@/components/layouts/Main/Main";
-import Footer from "@/components/layouts/Footer/Footer";
-import { Grid, GridItem } from "@chakra-ui/react";
+'use client';
+import { ChakraProvider } from '@chakra-ui/react';
+import ProvidersWrapper from '@/components/layouts/ProvidersWrapper/ProvidersWrapper';
+import Header from '@/components/layouts/Header/Header';
+import Top from '@/components/layouts/Top/Top';
+import Sidebar from '@/components/layouts/Sidebar/Sidebar';
+import Main from '@/components/layouts/Main/Main';
+import Footer from '@/components/layouts/Footer/Footer';
+import { Grid, GridItem } from '@chakra-ui/react';
 
 export default function RootLayout({
-  children
-}: { children: React.ReactNode }) {
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="ja">
       <head />
@@ -19,13 +21,13 @@ export default function RootLayout({
           <ProvidersWrapper>
             <Grid
               templateAreas={`
-                "header header header"
-                "sidebar top space"
-                "sidebar main space"
-                "footer footer footer"
+                "header header"
+                "sidebar top"
+                "sidebar main"
+                "footer footer"
               `}
-              templateRows="0.5fr 1fr 10fr 0.5fr"
-              templateColumns="2fr 8fr 1fr"
+              templateRows="60px 1fr"
+              templateColumns="250px 1fr"
               gap={2}
             >
               <GridItem area="header">
