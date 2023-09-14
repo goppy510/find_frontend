@@ -28,6 +28,7 @@ export default function LoginWindow() {
         }
       });
       if (response.status === 200) {
+        localStorage.setItem('jwtToken', response.data.token);
         router.push('/');
       } else {
         setErrorMessage('ログインに失敗しました。');
