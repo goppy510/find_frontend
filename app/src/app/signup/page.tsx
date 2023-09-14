@@ -1,4 +1,4 @@
-import SignupWindow from "@/features/components/Signup"
+import SignupWindow from "@/features/signup/components/Signup"
 
 export default function Signup({
   children,
