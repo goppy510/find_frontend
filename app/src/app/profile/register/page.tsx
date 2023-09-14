@@ -67,7 +67,7 @@ export default function ProfilePage() {
         borderRadius={{ base: 'none', sm: 'xl' }}
       >
         <FormControl mt={4}>
-          <FormLabel htmlFor="name">名前</FormLabel>
+          <FormLabel>名前</FormLabel>
           <Input
             id='name'
             value={name}
@@ -76,7 +76,7 @@ export default function ProfilePage() {
         </FormControl>
 
         <FormControl mt={4}>
-          <FormLabel htmlFor="phonNunmber">電話番号</FormLabel>
+          <FormLabel>電話番号</FormLabel>
           <Input
             id='phoneNumber'
             type='tel'
@@ -87,7 +87,7 @@ export default function ProfilePage() {
         </FormControl>
 
         <FormControl mt={4}>
-          <FormLabel htmlFor="companyName">会社名</FormLabel>
+          <FormLabel>会社名</FormLabel>
           <Input
             id='companyName'
             value={companyName}
@@ -96,7 +96,7 @@ export default function ProfilePage() {
         </FormControl>
 
         <FormControl mt={4}>
-          <FormLabel htmlFor='employeeCount'>従業員数</FormLabel>
+          <FormLabel>従業員数</FormLabel>
           <RadioGroup
             id='employeeCount'
             value={employeeCount}
@@ -115,7 +115,7 @@ export default function ProfilePage() {
         </FormControl>
 
         <FormControl mt={4}>
-          <FormLabel htmlFor='industry'>業種</FormLabel>
+          <FormLabel>業種</FormLabel>
           <RadioGroup
             id='industry'
             value={industry}
@@ -135,7 +135,7 @@ export default function ProfilePage() {
         </FormControl>
 
         <FormControl mt={4}>
-          <FormLabel hmtlFor='position'>役職</FormLabel>
+          <FormLabel>役職</FormLabel>
           <RadioGroup
             id='position'
             value={position}
