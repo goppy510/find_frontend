@@ -10,7 +10,7 @@ const postMock1: Post[] = [
     id: 1,
     title: "Ultimate Marketing Audience",
     description: "投稿本文1",
-    category: "IT",
+    category: "セールスプロモーション",
     likes: 120,
     views: 280,
     memberViews: 50,
@@ -21,7 +21,7 @@ const postMock1: Post[] = [
     id: 2,
     title: "Midjourney Prompts Helperdddddd",
     description: "With this Midjourney Prompts helper, you can enter your predefined Midjourney Prompts, and ChatGPT will refine your ",
-    category: "会計・経理・税務",
+    category: "広告・Web制作・マーケティング支援",
     likes: 120,
     views: 280,
     memberViews: 50,
@@ -32,7 +32,7 @@ const postMock1: Post[] = [
     id: 3,
     title: "投稿タイトル3",
     description: "投稿本文3",
-    category: "法務",
+    category: "Webサービス",
     likes: 120,
     views: 280,
     memberViews: 50,
@@ -46,7 +46,7 @@ const postMock2: Post[] = [
     id: 4,
     title: "投稿タイトル4",
     description: "投稿本文4",
-    category: "エクセル・スプレッドシート",
+    category: "メーカー",
     likes: 120,
     views: 280,
     memberViews: 50,
@@ -57,7 +57,7 @@ const postMock2: Post[] = [
     id: 5,
     title: "投稿タイトル5",
     description: "投稿本文5",
-    category: "文書",
+    category: "店舗運営",
     likes: 120,
     views: 280,
     memberViews: 50,
@@ -68,14 +68,13 @@ const postMock2: Post[] = [
     id: 6,
     title: "投稿タイトル6",
     description: "投稿本文6",
-    category: "メール",
+    category: "不動産",
     likes: 120,
     views: 280,
     memberViews: 50,
     accountName: 'hogehoge',
     avater: "https://github.com/identicons/pronama.png"
-  },
-  // その他の投稿データ
+  }
 ];
 
 // 1 つのページあたりに表示する投稿の数

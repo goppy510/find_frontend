@@ -1,41 +1,24 @@
 "use client";
 import { Tag, TagLabel, Box } from "@chakra-ui/react";
 import * as React from "react";
-
-const categories = [
-  "IT",
-  "株・投資",
-  "エクセル・スプレッドシート",
-  "パワーポイント・スライド",
-  "ワード・ドキュメント",
-  "メール",
-  "文書",
-  "コミュニケーション",
-  "会計・経理・税務",
-  "効率・時短",
-  "マネジメント",
-  "法務",
-  "教育",
-  "マーケティング",
-  "時事",
-  "その他",
-];
+import { categories } from '@/const/category';
 
 const Top = () => {
   return (
     <Box
       display="flex"
       flexWrap="wrap"
-      justifyContent="flex-start"
+      justifyContent="center"
       mt={5}
       maxWidth="100%"
     >
       {categories.map((category) => (
         <Box
           key={category}
-          margin={1}
+          margin={3}
           flexShrink={0}
           cursor="pointer"
+          // カテゴリごとに一覧表示にする
           onClick={() => console.log(`Clicked ${category}`)}
         >
           <Tag

@@ -1,6 +1,5 @@
-import {
-  Box
-} from "@chakra-ui/react";
+'use client';
+import { Box } from "@chakra-ui/react";
 import CategoryTagMapping from "@/features/card/components/CategoryTagMapping";
 
 type CategroyProps = {

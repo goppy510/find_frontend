@@ -5,6 +5,7 @@ import {
   Flex,
   Heading,
   Spacer,
+  Link,
   ButtonGroup
 } from "@chakra-ui/react";
 import NextLink from "next/link";
@@ -27,7 +28,7 @@ export default function Header() {
     checkToken();
 
     // storageイベントのリスナーを設定
-    const handleStorageChange = (e) => {
+    const handleStorageChange = (e: any) => {
       if (e.key === 'jwtToken') {
         checkToken();
       }
@@ -55,16 +56,18 @@ export default function Header() {
       >
         <Flex flex={1} justify="space-between" maxW="5xl" mx="auto">
           <Heading as="h1" size="lg">
-            <NextLink href="/">PromptData</NextLink>
+            <NextLink href="/">Find</NextLink>
           </Heading>
           <Spacer />
           {
             // loggedInがfalseの場合のみ、ログインボタンと会員登録ボタンを表示
-            !loggedIn && (
+            !loggedIn ? (
               <ButtonGroup gap='2'>
                 <LoginButton />
                 <SignUpButton />
               </ButtonGroup>
+            ) : (
+              <Link as={NextLink} href='/profile/edit/' ml="auto" mt='auto' fontSize="sm">アカウント設定</Link>
             )
           }
         </Flex>
