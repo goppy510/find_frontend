@@ -7,7 +7,6 @@ const baseURL =
 // 例：　await apiClient.get('/endopoint')
 const apiClient = axios.create({
   baseURL,
-  withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',

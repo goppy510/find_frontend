@@ -22,8 +22,6 @@ const useFetchProfile = () => {
         const endpoint = '/api/users/profile';
         const response = await apiClient.get(endpoint);
 
-        console.log(response);
-
         if (response.status === 200) {
           const profileData: MyPageType = {
             userId: response.data.user_id,
