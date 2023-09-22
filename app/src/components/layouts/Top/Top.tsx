@@ -1,9 +1,10 @@
 "use client";
 import { Tag, TagLabel, Box } from "@chakra-ui/react";
 import * as React from "react";
-import { categories } from '@/const/category';
+import useFetchCategory from '@/hooks/useFetchCategory';
 
 const Top = () => {
+  const { categories } = useFetchCategory();
   return (
     <Box
       display="flex"
