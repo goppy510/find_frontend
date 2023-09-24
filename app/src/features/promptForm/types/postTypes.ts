@@ -1,3 +1,4 @@
+import OutputExample from '../components/OutputExample';
 // ホーム画面の一覧
 export interface Post {
   id: number;
@@ -19,8 +20,8 @@ export interface PostDetail {
   avatar: string;
   title: string;
   description: string;
-  exampleInput: string;
-  exampleOutput: string;
+  inputExample: string;
+  outputExample: string;
   category: string;
   likes: number;
   views: number;
@@ -39,8 +40,8 @@ export interface FormData {
   title: string;
   description: string;
   prompt: string;
-  exampleInput: string;
-  exampleOutput: string;
+  inputExample: string;
+  outputExample: string;
 }
 
 // ヘッダーコンポーネント用
