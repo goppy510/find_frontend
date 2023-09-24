@@ -8,18 +8,17 @@ import {
   CategoryIcon,
   CategoryTag,
   Title,
-  Description,
-  MemberViews,
-  Likes,
-  Views
-} from "@/features/card/components";
-import { Post } from "@/features/card/types/postTypes";
+  About,
+  BookmarksCount,
+  LikesCount
+} from "@/features/prompt/components";
+import { PromptType } from "@/types/home/promptTypes";
 
-type CardProps = {
-  post: Post;
+type PromptProps = {
+  prompt: PromptType;
 };
 
-export default function Card({ post }: CardProps) {
+export default function Prompt({ prompt }: PromptProps) {
 
   return (
     <Box
@@ -31,38 +30,35 @@ export default function Card({ post }: CardProps) {
       boxShadow="xl"
       _hover={{ bg: "gray.100" }}
     >
-      <Box as="a" href={`/posts/${post.id}`} cursor="pointer">
+      <Box as="a" href={`/prompts/${prompt.promptUuid}`} cursor="pointer">
         <Grid
           templateAreas={`
             "categoryIcon categoryIcon categoryIcon"
             "category category category"
             "title title title"
-            "description description description"
-            "memberViews likes views"
+            "about about about"
+            "bookmarksCount likes_count likes_count"
           `}
           templateRows="1fr 0.25fr 0.25fr 0.25fr 8.25fr"
           templateColumns="4fr 4fr 4fr"
         >
           <GridItem area="categoryIcon">
-            <CategoryIcon category={post.category} />
+            <CategoryIcon category={prompt.category} />
           </GridItem>
           <GridItem area="category" my={3} mx={6}>
-            <CategoryTag category={post.category} />
+            <CategoryTag category={prompt.category} />
           </GridItem>
           <GridItem area="title" mx={6}>
-            <Title title={post.title} />
+            <Title title={prompt.title} />
           </GridItem>
-          <GridItem area="description" my={3} mx={6}>
-            <Description description={post.description} />
+          <GridItem area="about" my={3} mx={6}>
+            <About about={prompt.about} />
           </GridItem>
-          <GridItem area="memberViews"my={2} mx={6}>
-            <MemberViews memberViews={post.memberViews} />
+          <GridItem area="bookmarksCount"my={2} mx={6}>
+            <BookmarksCount bookmarksCount={prompt.bookmarksCount} />
           </GridItem>
-          <GridItem area="likes" my={2} mx={6}>
-            <Likes likes={post.likes} />
-          </GridItem>
-          <GridItem area="views" my={2} mx={6}>
-            <Views views={post.views} />
+          <GridItem area="likes_count" my={2} mx={6}>
+            <LikesCount likesCount={prompt.likesCount} />
           </GridItem>
         </Grid>
       </Box>
