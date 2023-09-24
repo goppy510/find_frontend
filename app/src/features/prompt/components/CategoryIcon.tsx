@@ -2,7 +2,7 @@
 import {
   Box
 } from "@chakra-ui/react";
-import CategoryIconMapping from "@/features/card/components/CategoryIconMapping";
+import CategoryIconMapping from "@/features/prompt/components/CategoryIconMapping";
 
 type CategroyProps = {
   category: string;
