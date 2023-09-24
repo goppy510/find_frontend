@@ -16,17 +16,18 @@ import {
   Prompt,
   ExampleInput,
   ExampleOutput
-} from "@/features/cardForm/components";
-import { FormData } from "@/features/cardForm/types/postTypes";
-import Confirmation from "@/features/cardForm/components/CardConfirmation";
+} from "@/features/promptForm/components";
+import { FormData } from "@/features/promptForm/types/postTypes";
+import Confirmation from "@/features/promptForm/components/PromptConfirmation";
+import InputExample from './InputExample';
 
 const INITIAL_FORM_DATA: FormData = {
   model: "",
   title: "",
   description: "",
   prompt: "",
-  exampleInput: "",
-  exampleOutput: ""
+  inputExample: "",
+  outputExample: ""
 };
 
 
@@ -56,7 +57,7 @@ export default function CardForm() {
     }
   };
 
-  type FieldName = 'model' | 'title' | 'description' | 'prompt' | 'exampleInput' | 'exampleOutput';
+  type FieldName = 'model' | 'title' | 'description' | 'prompt' | 'inputExample' | 'outputExample';
 
   const registerField = (
     fieldName: FieldName,
@@ -109,18 +110,18 @@ export default function CardForm() {
   const promptRegister = registerField('prompt', true, MAX_PROMPT_LENGTH);
 
   // 入力例文字数チェック
-  const MAX_EXAMPLE_INPUT_LENGTH = 100;
-  const handleExampleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, 'exampleInput', MAX_EXAMPLE_INPUT_LENGTH);
+  const MAX_INPUT_EXAMPLE_LENGTH = 100;
+  const handleInputExampleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, 'inputExample', MAX_INPUT_EXAMPLE_LENGTH);
 
-  // exampleInputバリデーション
-  const exampleInputRegister = registerField('exampleInput', true, MAX_EXAMPLE_INPUT_LENGTH);
-
-  // 出力例文字数チェック
-  const MAX_EXAMPLE_OUTPUT_LENGTH = 2048;
-  const handleExampleOutputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, 'exampleOutput', MAX_EXAMPLE_OUTPUT_LENGTH);
+  // inputExampleバリデーション
+  const inputExampleRegister = registerField('inputExample', true, MAX_INPUT_EXAMPLE_LENGTH);
 
   // 出力例文字数チェック
-  const exampleOutputRegister = registerField('exampleOutput', true, MAX_EXAMPLE_OUTPUT_LENGTH);
+  const MAX_OUTPUT_EXAMPLE_LENGTH = 2048;
+  const handleOutputExampleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => handleTextChange(event, 'outputExample', MAX_OUTPUT_EXAMPLE_LENGTH);
+
+  // 出力例文字数チェック
+  const outputExampleRegister = registerField('outputExample', true, MAX_OUTPUT_EXAMPLE_LENGTH);
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
@@ -212,20 +213,20 @@ export default function CardForm() {
 
                 {/* 入力例 */}
                 <ExampleInput
-                  text={formData.exampleInput}
-                  errors={errors.exampleInput}
-                  maxLength={MAX_EXAMPLE_INPUT_LENGTH}
-                  handleChange={handleExampleInputChange}
-                  register={exampleInputRegister}
+                  text={formData.inputExample}
+                  errors={errors.inputExample}
+                  maxLength={MAX_INPUT_EXAMPLE_LENGTH}
+                  handleChange={handleInputExampleChange}
+                  register={inputExampleRegister}
                 />
 
                 {/* 出力例 */}
                 <ExampleOutput
-                  text={formData.exampleOutput}
-                  errors={errors.exampleOutput}
-                  maxLength={MAX_EXAMPLE_OUTPUT_LENGTH}
-                  handleChange={handleExampleOutputChange}
-                  register={exampleOutputRegister}
+                  text={formData.outputExample}
+                  errors={errors.outputExample}
+                  maxLength={MAX_OUTPUT_EXAMPLE_LENGTH}
+                  handleChange={handleOutputExampleChange}
+                  register={outputExampleRegister}
                 />
 
               </Stack>
