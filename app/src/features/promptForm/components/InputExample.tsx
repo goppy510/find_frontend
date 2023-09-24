@@ -4,7 +4,7 @@ import {
   FormLabel,
   Textarea,
   FormHelperText,
-} from "@/features/components";
+} from "@chakra-ui/react";
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
   register: UseFormRegisterReturn;
 }
 
-export default function ExampleInput({
+export default function InputExample({
   text,
   maxLength,
   handleChange,
@@ -23,9 +23,9 @@ export default function ExampleInput({
 }: Props) {
   return (
     <FormControl>
-      <FormLabel htmlFor="exampleInput">入力例（具体的な値などを入れてください）</FormLabel>
+      <FormLabel htmlFor="inputExample">入力例（具体的な値などを入れてください）</FormLabel>
       <Textarea
-        id="exampleInput"
+        id="inputExample"
         {...register}
         value={text}
         placeholder="[分野]:医療, [色]: 白"
