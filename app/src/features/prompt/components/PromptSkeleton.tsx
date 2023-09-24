@@ -22,7 +22,7 @@ export function PromptSkeleton() {
         templateColumns="4fr 4fr 4fr"
       >
         <GridItem area="categoryIcon">
-          <Skeleton circle height="112px" width="512px" />
+          <Skeleton height="112px" width="512px" />
         </GridItem>
         <GridItem area="category" my={3} mx={6}>
           <Skeleton height="24px" width="101px" />
