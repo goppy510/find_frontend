@@ -3,6 +3,7 @@ export interface PromptType {
   id: number;
   promptUuid: string;
   category: string;
+  generativeAiModel: string;
   title: string;
   about: string;
   nickname: string;
