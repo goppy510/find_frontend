@@ -1,17 +1,18 @@
 // プロンプトの詳細画面の型定義
 export interface PromptDetailType {
   id: number;
-  prompt_uuid: string;
+  promptUuid: string;
   category: string;
   about: string;
-  input_example: string;
-  output_example: string;
+  title: string;
+  inputExample: string;
+  outputExample: string;
   prompt: string;
-  generative_ai_model: string;
+  generativeAiModel: string;
   nickname: string;
-  likes_count: number;
-  bookmarks_count: number;
-  updated_at: string;
+  likesCount: number;
+  bookmarksCount: number;
+  updatedAt: string;
 }
 
 export interface PromptId {

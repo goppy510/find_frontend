@@ -1,57 +1,44 @@
+'use client';
+import { PromptDetailType } from "@/features/promptDetail/types/promptDetailTypes";
 import {
   Box,
   Flex,
   Divider
 } from "@chakra-ui/react";
 import {
-  Rating,
   ReadButton,
   Creator,
   Title,
-  MemberViews,
-  Likes,
-  Views,
-  Model
+  BookmarksCount,
+  LikesCount,
+  GenerativeAiModel
 } from "./index"
 
-type Props = {
-  title: string;
-  avatar: string;
-  accountLink: string;
-  accountName: string;
-  rating: number;
-  memberViews: number;
-  likes: number;
-  views: number;
-  model: string;
-};
-
-
 export default function DetailHeader({
+  id,
+  promptUuid,
+  category,
   title,
-  avatar,
-  accountLink,
-  accountName,
-  rating,
-  memberViews,
-  likes,
-  views,
-  model
-}: Props) {
+  about,
+  nickname,
+  inputExample,
+  outputExample,
+  prompt,
+  likesCount,
+  bookmarksCount,
+  generativeAiModel,
+  updatedAt
+}: PromptDetailType) {
   return (
     <Box w={{ base: '100%' }} h={{ md: '30vh' }}>
       <Title title={title} />
       <Box display={{base: 'block', md: 'flex'}}>
         <Box w={{ base: '100%', md: '50%'}} >
           <Flex justifyContent="space-between" alignItems="center" my="5">
-            <Creator avatar={avatar} accountLink={accountLink} accountName={accountName} />
-            <Box>
-              <Rating rating={rating} />
-            </Box>
-            <MemberViews memberViews={memberViews} />
-            <Likes likes={likes} />
-            <Views views={views} />
-            <Model model={model} />
+            <Creator userLink="" nickname={nickname} />
+            <BookmarksCount bookmarksCount={bookmarksCount} />
+            <LikesCount likesCount={likesCount} />
+            <GenerativeAiModel generativeAiModel={generativeAiModel} />
           </Flex>
         </Box>
         <Box w={{ base: '100%', md: '50%'}} >

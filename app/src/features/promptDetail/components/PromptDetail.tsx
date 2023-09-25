@@ -1,18 +1,18 @@
 "use client";
 import { Box, Flex } from "@chakra-ui/react";
 import { PromptDetailType, PromptUuid } from "@/features/promptDetail/types/promptDetailTypes";
-import Prompt from '@/features/promptForm/components/Prompt';
+import useFetchPromptDetail from "@/features/promptDetail/hooks/useFetchPromptDetail";
 import {
   DetailHeader,
   Thumbnail,
-  Description,
-  ExampleInput,
-  ExampleOutput,
+  About,
+  InputExample,
+  OutputExample,
   ReadButton
 } from "@/features/promptDetail/components/";
 
 type Props = {
-  uuid: PromptUuid;
+  promptUuid: PromptUuid;
 };
 
 // mock
@@ -33,28 +33,33 @@ type Props = {
 //   model: "GPT-3.5"
 // }
 
-export default function PostCardDetail({ uuid }: Props) {
+export default function PromptDetail({ promptUuid }: Props) {
+  const { promptDetail, errorMessage } = useFetchPromptDetail(promptUuid);
 
   return (
     <Box minH="100vh" maxW="100%"  m="0 auto">
-      <Thumbnail category={postDetail.category} />
+      <Thumbnail category={promptDetail.category} />
       <DetailHeader
-        title={postDetail.title}
-        avatar={postDetail.avatar}
-        accountLink={postDetail.accountLink}
-        accountName={postDetail.accountName}
-        rating={postDetail.rating}
-        memberViews={postDetail.memberViews}
-        likes={postDetail.likes}
-        views={postDetail.views}
-        model={postDetail.model}
+        id={promptDetail.id}
+        promptUuid={promptDetail.promptUuid}
+        category={promptDetail.category}
+        title={promptDetail.title}
+        about={promptDetail.about}
+        inputExample={promptDetail.inputExample}
+        outputExample={promptDetail.outputExample}
+        prompt={promptDetail.prompt}
+        nickname={promptDetail.nickname}
+        bookmarksCount={promptDetail.bookmarksCount}
+        likesCount={promptDetail.likesCount}
+        generativeAiModel={promptDetail.generativeAiModel}
+        updatedAt={promptDetail.updatedAt}
       />
       <Box as="h3" fontSize="2xl" fontWeight="bold" mb="4" my="5">このプロンプトについて</Box>
-      <Description text={postDetail.description} />
+      <About text={promptDetail.about} />
       <Box as="h3" fontSize="2xl" fontWeight="bold" mb="4" my="5">入力例</Box>
-      <ExampleInput text={postDetail.exampleInput} />
+      <InputExample text={promptDetail.inputExample} />
       <Box as="h3" fontSize="2xl" fontWeight="bold" mb="4" my="5">出力例</Box>
-      <ExampleOutput text={postDetail.exampleOutput} />
+      <OutputExample text={promptDetail.outputExample} />
 
       <Box w={{ base: '100%' }} >
         <Flex justifyContent="center" alignItems="center" my="5">

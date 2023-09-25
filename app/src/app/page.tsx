@@ -5,6 +5,7 @@ import Prompt from "@/features/prompt/components/Prompt";
 import Pagination from "@/components/elements/pagination/components/Pagination";
 import { PromptSkeleton } from "@/features/prompt/components/PromptSkeleton";
 import useFetchPromptPerPage from "@/hooks/useFetchPromptPerPage";
+import { PromptType } from "@/types/home/promptTypes";
 
 const SKELETON_COUNT = 6;
 
@@ -33,7 +34,7 @@ export default function Home() {
           </GridItem>
         ))
       ) : (
-        prompts.map((prompt) => (
+        prompts.map((prompt: PromptType) => (
           <GridItem key={prompt.id}>
             <Prompt prompt={prompt} />
           </GridItem>

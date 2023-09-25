@@ -1,22 +1,16 @@
 import React from 'react';
 import { Box } from "@chakra-ui/react";
+import { CreatorType } from "@/features/promptDetail/types/creatorTypes";
 
-type Props = {
-  avatar: string;
-  accountLink: string;
-  accountName: string;
-
-};
-
-export default function Creator({ avatar, accountLink, accountName }: Props) {
+export default function Creator({ userLink, nickname }: CreatorType) {
   return (
-    <Box as="a" href={accountLink} display="flex" alignItems="center">
+    <Box as="a" href={userLink} display="flex" alignItems="center">
       <Box w="32px" h="32px" borderRadius="50%" overflow="hidden">
-        <Box as="img" src={avatar} w="100%" h="100%" objectFit="cover" />
+        <Box as="img" src="" w="100%" h="100%" objectFit="cover" />
       </Box>
       <Box ml="2">
         <Box as="span" fontWeight="bold" _hover={{ textDecoration: "underline" }}>
-          {accountName}
+          {nickname}
         </Box>
       </Box>
     </Box>
