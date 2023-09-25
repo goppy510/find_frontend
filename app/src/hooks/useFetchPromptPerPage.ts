@@ -20,6 +20,7 @@ const useFetchPromptPerPage = (currentPage: number) => {
               id: prompt.id,
               promptUuid: prompt.prompt_uuid,
               category: prompt.category,
+              generativeAiModel: prompt.generative_ai_model,
               title: prompt.title,
               about: prompt.about,
               nickname: prompt.nickname,
