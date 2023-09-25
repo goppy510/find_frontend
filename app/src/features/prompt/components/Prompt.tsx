@@ -10,7 +10,8 @@ import {
   Title,
   About,
   BookmarksCount,
-  LikesCount
+  LikesCount,
+  GenerativeAiModel
 } from "@/features/prompt/components";
 import { PromptType } from "@/types/home/promptTypes";
 
@@ -37,7 +38,7 @@ export default function Prompt({ prompt }: PromptProps) {
             "category category category"
             "title title title"
             "about about about"
-            "bookmarksCount likes_count likes_count"
+            "bookmarksCount likesCount generativeAiModel"
           `}
           templateRows="1fr 0.25fr 0.25fr 0.25fr 8.25fr"
           templateColumns="4fr 4fr 4fr"
@@ -57,8 +58,11 @@ export default function Prompt({ prompt }: PromptProps) {
           <GridItem area="bookmarksCount"my={2} mx={6}>
             <BookmarksCount bookmarksCount={prompt.bookmarksCount} />
           </GridItem>
-          <GridItem area="likes_count" my={2} mx={6}>
+          <GridItem area="likesCount" my={2} mx={6}>
             <LikesCount likesCount={prompt.likesCount} />
+          </GridItem>
+          <GridItem area="generativeAiModel" my={2} mx={6}>
+            <GenerativeAiModel generativeAiModel={prompt.generativeAiModel} />
           </GridItem>
         </Grid>
       </Box>
