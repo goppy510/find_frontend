@@ -7,17 +7,17 @@ import {
 } from 'react-icons/fa';
 
 type StatProps = {
-  memberViews: number;
+  bookmarksCount: number;
 };
 
-export default function MemberViews({ memberViews }: StatProps) {
+export default function BookmarksCount({ bookmarksCount }: StatProps) {
 
   return (
     <Flex alignItems="center">
     <Box as="span" fontWeight="bold" mr="2">
       <FaBookReader />
     </Box>
-    <Box as="span">{memberViews}</Box>
+    <Box as="span">{bookmarksCount}</Box>
   </Flex>
   );
 }

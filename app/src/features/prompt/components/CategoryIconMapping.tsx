@@ -4,9 +4,6 @@ import { categoryIconDetails } from '@/const/categoryIcon';
 export default function CategoryIconMapping({ category }: { category: string }): JSX.Element {
   const { icon: IconComponent, bg } = categoryIconDetails[category] ?? { icon: null, bg: "gray.500" };
 
-  console.log(`Rendering icon for category: ${category}`, IconComponent, bg);
-
-
   return (
     <Box
       bg={bg}

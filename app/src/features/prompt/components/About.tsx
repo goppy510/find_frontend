@@ -2,11 +2,11 @@ import {
   Box
 } from "@chakra-ui/react";
 
-type DescriptionProps = {
-  description: string;
+type AboutProps = {
+  about: string;
 };
 
-export default function Description({ description }: DescriptionProps) {
+export default function About({ about }: AboutProps) {
 
   return (
     <Box
@@ -20,7 +20,7 @@ export default function Description({ description }: DescriptionProps) {
       }}
       height="3em"
     >
-      {description}
+      {about}
     </Box>
   );
 }

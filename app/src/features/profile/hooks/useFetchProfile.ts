@@ -1,16 +1,6 @@
 import { useState, useEffect } from 'react';
 import apiClient from '@/lib/api-client';
-
-type MyPageType = {
-  userId: number;
-  name: string;
-  phoneNumber: string;
-  companyName: string;
-  employeeCount: string;
-  industry: string;
-  position: string;
-  businessModel: string;
-};
+import { MyPageType } from '@/features/profile/types/myPageTypes';
 
 const useFetchProfile = () => {
   const [profile, setProfile] = useState<MyPageType | null>(null);

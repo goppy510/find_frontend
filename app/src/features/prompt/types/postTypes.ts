@@ -1,16 +1,3 @@
-// ホーム画面の一覧
-export interface Post {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  likes: number;
-  views: number;
-  memberViews: number;
-  accountName: string;
-  avater: string;
-}
-
 // 詳細画面
 export interface PostDetail {
   id: number;

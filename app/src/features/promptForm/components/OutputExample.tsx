@@ -4,7 +4,8 @@ import {
   FormLabel,
   Textarea,
   FormHelperText,
-} from "@/features/components";
+  FormErrorMessage
+} from "@chakra-ui/react";
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
 interface Props {
@@ -15,22 +16,25 @@ interface Props {
   register: UseFormRegisterReturn;
 }
 
-export default function ExampleInput({
+export default function OutputExample({
   text,
   maxLength,
+  errors,
   handleChange,
   register,
 }: Props) {
   return (
-    <FormControl>
-      <FormLabel htmlFor="exampleInput">入力例（具体的な値などを入れてください）</FormLabel>
+    <FormControl isInvalid={Boolean(errors?.text)}>
+      <FormLabel htmlFor="outputExample">出力例（ChatGPTが回答した内容を書いてください）</FormLabel>
       <Textarea
-        id="exampleInput"
+        id="outputExample"
         {...register}
         value={text}
-        placeholder="[分野]:医療, [色]: 白"
         onChange={handleChange}
       />
+      <FormErrorMessage>
+        {errors?.text && errors?.text.message}
+      </FormErrorMessage>
       <FormHelperText>
         {text.length}/{maxLength}
       </FormHelperText>

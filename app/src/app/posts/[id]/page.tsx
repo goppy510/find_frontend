@@ -1,12 +1,12 @@
 'use client';
 import React from "react";
 import { Box } from "@chakra-ui/react";
-import CardDetail from "@/features/cardDetail/components/CardDetail";
-import { PostId } from "@/features/cardDetail/types/postTypes";
+import PromptDetail from "@/features/promptDetail/components/PromptDetail";
+import { PromptUuid } from "@/features/promptDetail/types/promptDetailTypes";
 import { useEffect, useState } from "react";
 import apiClient from "@/lib/api-client";
 
-export default function PostPage({ params }: { params: { id: PostId } }) {
+export default function PostPage({ params }: { params: { uuid: PromptUuid } }) {
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -39,7 +39,7 @@ export default function PostPage({ params }: { params: { id: PostId } }) {
 
   return (
     <Box>
-      <CardDetail id={ params.id } />
+      <PromptDetail uuid={ params.uuid } />
     </Box>
   );
 }

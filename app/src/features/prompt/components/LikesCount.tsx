@@ -7,17 +7,17 @@ import {
 } from 'react-icons/fa';
 
 type StatProps = {
-  likes: number;
+  likesCount: number;
 };
 
-export default function MemberViews({ likes }: StatProps) {
+export default function LikesCount({ likesCount }: StatProps) {
 
   return (
     <Flex alignItems="center">
       <Box as="span" fontWeight="bold" mr={2}>
         <FaThumbsUp />
       </Box>
-      <Box as="span">{likes}</Box>
+      <Box as="span">{likesCount}</Box>
     </Flex>
   );
 }
