@@ -1,12 +1,23 @@
 'use client';
 import MyPage from '@/features/profile/components/MyPage';
 import useFetchProfile from "@/features/profile/hooks/useFetchProfile";
+import ErrorToast from "@/components/elements/toast/ErrorToast";
+import Loading from "@/components/elements/loading/Loading";
 
 export default function Account({ children, } : { children: React.ReactNode }) {
-  const { profile, errorMessage } = useFetchProfile();
+  const { profile, errorMessage, isLoading } = useFetchProfile();
 
-    // プロフィールデータがnullの場合、何も表示しないか、ローディングを表示するなどの処理が可能です
-    if (!profile) return null;
+  if (isLoading) {
+    return (
+      <Loading />
+    )
+  }
+
+  if (errorMessage) {
+    return (
+      <ErrorToast message={errorMessage} />
+    )
+  }
 
   return (
       <MyPage profile={profile} />
