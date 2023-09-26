@@ -33,11 +33,11 @@ const useFetchPromptPerPage = (currentPage: number) => {
           setPrompts(promptsData);
           setTotalCount(response.data.total_count);
         } else {
-          setErrorMessage('投稿の読み込みに失敗しました。');
+          setErrorMessage('詳細ページの読み込みに失敗しました。');
         }
       } catch (error) {
         console.error('Error fetching posts:', error);
-        setErrorMessage('投稿の読み込みに失敗しました。');
+        setErrorMessage('詳細ページの読み込みに失敗しました。');
       } finally {
         setIsLoading(false);
       }
