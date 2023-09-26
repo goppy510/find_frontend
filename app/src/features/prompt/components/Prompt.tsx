@@ -15,7 +15,11 @@ import {
 } from "@/features/prompt/components";
 import { PromptType } from "@/types/home/promptTypes";
 
-export default function Prompt(prompt: PromptType) {
+type Props = {
+  prompt: PromptType;
+};
+
+export default function Prompt({ prompt }: Props) {
 
   return (
     <Box
