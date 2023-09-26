@@ -1,4 +1,4 @@
-export { default as Thumbnail } from './Thumbnail';
+export { default as Category } from './Category';
 export { default as DetailHeader } from './DetailHeader';
 export { default as About } from './About';
 export { default as InputExample } from './InputExample';
