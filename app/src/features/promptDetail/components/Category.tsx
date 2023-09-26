@@ -6,7 +6,7 @@ type Props = {
   category: string;
 };
 
-export default function Thumbnail({category}: Props) {
+export default function Category({category}: Props) {
   return (
     <Box w={{ base: '100%' }} h={{ md: '30vh' }}>
       <Flex justifyContent="center" alignItems="center" h="100%">
