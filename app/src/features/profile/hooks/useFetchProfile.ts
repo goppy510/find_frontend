@@ -5,10 +5,12 @@ import { MyPageType } from '@/features/profile/types/myPageTypes';
 const useFetchProfile = () => {
   const [profile, setProfile] = useState<MyPageType | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleFetchProfile = async () => {
       try {
+        setIsLoading(true);
         const endpoint = '/api/users/profile';
         const response = await apiClient.get(endpoint);
 
@@ -28,15 +30,16 @@ const useFetchProfile = () => {
           setErrorMessage('プロフィールの読み込みに失敗しました。');
         }
       } catch (error) {
-        console.error('Fetch Profile Failed:', error);
         setErrorMessage('プロフィールの読み込みに失敗しました。');
+      } finally {
+        setIsLoading(false); // 成功または失敗後にisLoadingをfalseに設定
       }
     };
 
     handleFetchProfile();
   }, []);
 
-  return { profile, errorMessage };
+  return { profile, errorMessage, isLoading };
 };
 
 export default useFetchProfile;
