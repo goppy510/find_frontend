@@ -10,10 +10,15 @@ export default function About({text}: Props) {
   const height = `${2 + lines.length * 1.5}em`;
 
   return (
-    <Box w={{ base: '100%' }} minH={{ base: height }} bg="white.100">
+    <Box
+      w={{ base: '100%' }}
+      minH={{ base: height }}
+      bg="white.100"
+      my={10}
+    >
       <Flex justifyContent="space-between" alignItems="center">
-        <Box mx="auto">
-          <Box fontSize="1xl" mb="4">
+        <Box>
+          <Box fontSize="2xl" mb="4">
             {lines.map((line, index) => (
               <React.Fragment key={index}>
                 {line}
