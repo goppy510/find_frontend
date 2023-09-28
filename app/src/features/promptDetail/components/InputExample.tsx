@@ -18,7 +18,7 @@ export default function InputExample({text}: Props) {
       borderRadius="xl"  // ここで角を丸める
     >
       <Flex justifyContent="space-between" alignItems="center">
-        <Box mx="auto">
+        <Box>
           <Box fontSize="1xl" mb="4" mx="3">
             {lines.map((line, index) => (
               <React.Fragment key={index}>
