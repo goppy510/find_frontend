@@ -8,37 +8,24 @@ import {
   FormLabel,
   Input
 } from "@chakra-ui/react";
-import apiClient from "@/lib/api-client";
 import { useState } from "react";
+import useLogin from "@/features/login/hooks/useLogin";
+import ErrorToast from "@/components/elements/toast/ErrorToast";
+import Loading from "@/components/elements/loading/Loading";
 
 export default function LoginWindow() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const { handleLogin, errorMessage, isLoading } = useLogin();
 
-  const handleLogin = async () => {
-    try {
-      const endpoint = '/api/users/login'
-      const response = await apiClient.post(endpoint, {
-        login: {
-          email, 
-          password
-        }
-      });
-      if (response.status === 200) {
-        localStorage.setItem('jwtToken', response.data.token);
-        window.location.href = '/';
-      } else {
-        setErrorMessage('ログインに失敗しました。');
-      }
-    } catch (error) {
-      console.error('Login failed:', error);
-      setErrorMessage('ログインに失敗しました。');
-    }
-  };
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <Container maxW="lg" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }}>
+      {errorMessage && <ErrorToast message={errorMessage} />}
+
       <Stack spacing="8">
         <Box
           py={{ base: '0', sm: '8' }}
@@ -47,7 +34,6 @@ export default function LoginWindow() {
           boxShadow={{ base: 'none', sm: 'md' }}
           borderRadius={{ base: 'none', sm: 'xl' }}
         >
-          {errorMessage && <div>{errorMessage}</div>}
           <Stack spacing="6">
             <FormControl>
               <FormLabel htmlFor="email">メールアドレス</FormLabel>
@@ -75,7 +61,7 @@ export default function LoginWindow() {
               _hover={{
                 bg: "messenger.500",
               }}
-              onClick={handleLogin}
+              onClick={() => handleLogin(email, password)}
             >
               ログイン
             </Button>
