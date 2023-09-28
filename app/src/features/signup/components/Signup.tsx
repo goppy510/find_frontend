@@ -10,18 +10,26 @@ import {
   Input,
   Checkbox
 } from "@chakra-ui/react";
-import apiClient from "@/lib/api-client";
+import usePostSignup from "@/features/signup/hooks/usePostSignup";
+import ErrorToast from "@/components/elements/toast/ErrorToast";
+import SuccessToast from "@/components/elements/toast/SuccessToast";
 import { useState } from "react";
 
 export default function SignupWindow() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState(''); 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [isChecked, setIsChecked] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(false);
 
-  const isButtonEnabled = isChecked && password === confirmPassword && password !== '';
+  const {
+    handleSignup,
+    errorMessage,
+    successMessage,
+    duplicateErrorMessage,
+    unprocessibleEntityErrorMessage
+  } = usePostSignup();
+
+  const isButtonEnabled = email && email !== '' && isChecked && password === confirmPassword && password !== '';
 
   const buttonStyles = {
     bg: isButtonEnabled ? "messenger.400" : "gray.300",
@@ -30,35 +38,13 @@ export default function SignupWindow() {
     _hover: isButtonEnabled ? { bg: "messenger.500" } : {}
   };
 
-  const handleSignup = async () => {
-    if (!isButtonEnabled) {
-      return;
-    }
-  
-    try {
-      const endpoint = '/api/users/signup'
-      const response = await apiClient.post(endpoint, {
-        email, 
-        password
-      });
-      if (response.status === 200) {
-        setIsRegistered(true);
-      } else {
-        setErrorMessage('会員登録に失敗しました。');
-      }
-    } catch (error) {
-      console.error('Login failed:', error);
-      setErrorMessage('会員登録に失敗しました。');
-    }
-  };
-
   return (
     <Container maxW="lg" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }}>
-    {isRegistered ? (
-      <Box>
-        <p>メールを送りましたのでご確認ください。</p>
-      </Box>
-    ) : (
+      {duplicateErrorMessage && <ErrorToast message={duplicateErrorMessage} />}
+      {unprocessibleEntityErrorMessage && <ErrorToast message={unprocessibleEntityErrorMessage} />}
+      {errorMessage && <ErrorToast message={errorMessage} />}
+      {successMessage && <SuccessToast message={successMessage} />}
+
       <Stack spacing="8">
         <Stack spacing="6">
           {/* <Logo /> */}
@@ -109,14 +95,13 @@ export default function SignupWindow() {
             <Checkbox onChange={(e) => setIsChecked(e.target.checked)}>利用規約に同意する</Checkbox>
             </HStack>
             <Stack spacing="6">
-              <Button {...buttonStyles} onClick={handleSignup} disabled={!isButtonEnabled}>
-                登録する
+              <Button {...buttonStyles} onClick={() => handleSignup(email, password)} disabled={!isButtonEnabled}>
+                会員登録する
               </Button>
             </Stack>
           </Stack>
         </Box>
       </Stack>
-    )}
-  </Container>
+    </Container>
   );
 }
