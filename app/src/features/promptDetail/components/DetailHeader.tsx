@@ -6,28 +6,19 @@ import {
   Divider
 } from "@chakra-ui/react";
 import {
-  ReadButton,
   Creator,
   Title,
   BookmarksCount,
   LikesCount,
   GenerativeAiModel
-} from "./index"
+} from "@/features/promptDetail/components";
 
 export default function DetailHeader({
-  id,
-  promptUuid,
-  category,
   title,
-  about,
   nickname,
-  inputExample,
-  outputExample,
-  prompt,
   likesCount,
   bookmarksCount,
-  generativeAiModel,
-  updatedAt
+  generativeAiModel
 }: PromptDetailType) {
   return (
     <Box w={{ base: '100%' }} h={{ md: '30vh' }}>
@@ -39,17 +30,6 @@ export default function DetailHeader({
             <BookmarksCount bookmarksCount={bookmarksCount} />
             <LikesCount likesCount={likesCount} />
             <GenerativeAiModel generativeAiModel={generativeAiModel} />
-          </Flex>
-        </Box>
-        <Box w={{ base: '100%', md: '50%'}} >
-          <Flex justifyContent="center" alignItems="center" my="1">
-            <Box>
-              <Flex alignItems="center">
-                <Box as="span" fontWeight="bold" mr="2">
-                  <ReadButton />
-                </Box>
-              </Flex>
-            </Box>
           </Flex>
         </Box>
       </Box>
