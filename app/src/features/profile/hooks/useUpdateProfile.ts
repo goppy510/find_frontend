@@ -8,8 +8,8 @@ export function useUpdateProfile() {
   const updateProfile = async (key: string, val: string) => {
     try {
       const endpoint = '/api/users/profile';
-      const data = { profiles: { [key]: val } };
-      const response = await apiClient.put(endpoint, data);
+      const params = { profiles: { [key]: val } };
+      const response = await apiClient.put(endpoint, params);
 
       if (response.status === 200) {
         return true;
