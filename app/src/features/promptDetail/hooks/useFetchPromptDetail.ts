@@ -22,10 +22,12 @@ const useFetchPromptDetail = (promptUuId: PromptUuid) => {
     updatedAt: '',
   });
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleFetchPromptDetail = async () => {
       try {
+        setIsLoading(true);
         const endpoint = `/api/prompts/${promptUuId}`;
         const response = await apiClient.get(endpoint);
 
@@ -47,18 +49,19 @@ const useFetchPromptDetail = (promptUuId: PromptUuid) => {
           };
           setPromptDetail(promptData);
         } else {
-          setErrorMessage('プロフィールの読み込みに失敗しました。');
+          setErrorMessage('詳細ページの読み込みに失敗しました。');
         }
       } catch (error) {
-        console.error('Fetch Prompt Failed:', error);
-        setErrorMessage('プロフィールの読み込みに失敗しました。');
+        setErrorMessage('詳細ページの読み込みに失敗しました。');
+      } finally {
+        setIsLoading(false); // 成功または失敗後にisLoadingをfalseに設定
       }
     };
 
     handleFetchPromptDetail();
   }, [promptUuId]);
 
-  return { promptDetail, errorMessage };
+  return { promptDetail, errorMessage, isLoading };
 };
 
 export default useFetchPromptDetail;
