@@ -3,8 +3,6 @@ import apiClient from '@/lib/api-client';
 import axios from 'axios';
 
 const usePostSignup = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
@@ -67,10 +65,6 @@ const usePostSignup = () => {
   };
 
   return {
-    email,
-    setEmail,
-    password,
-    setPassword,
     confirmPassword,
     setConfirmPassword,
     isLoading,
