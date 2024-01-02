@@ -19,6 +19,8 @@ const useLogin = () => {
       const response = await apiClient.post(endpoint, params);
       if (response.status === 200) {
         localStorage.setItem('jwtToken', response.data.token);
+        localStorage.setItem('userId', response.data.user_id);
+        localStorage.setItem('expires', response.data.expires);
         window.location.href = '/';
       } else {
         setErrorMessage('ログインに失敗しました。');
