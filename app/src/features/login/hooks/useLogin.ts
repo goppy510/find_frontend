@@ -15,7 +15,7 @@ const useLogin = () => {
     try {
       setIsLoading(true);
       const endpoint = '/api/users/login';
-      const params = { login: { email: email, password: password } };
+      const params = { logins: { email: email, password: password } };
       const response = await apiClient.post(endpoint, params);
       if (response.status === 200) {
         localStorage.setItem('jwtToken', response.data.token);
