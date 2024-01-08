@@ -9,6 +9,8 @@ import {
   Td,
   IconButton,
   Button,
+  Box,
+  Flex,
 } from '@chakra-ui/react';
 import { FaPen, FaTrashAlt } from 'react-icons/fa';
 import CreateContractModal from '@/features/contract/components/CreateContractModal';
@@ -172,16 +174,6 @@ export default function Contracts() {
       {editErrorMessage && <ErrorToast message={editErrorMessage} />}
       {fetchErrorMessage && <ErrorToast message={fetchErrorMessage} />}
 
-      <Button
-        colorScheme="blue"
-        onClick={() => setCreateModalOpen(true)}
-        position="absolute"
-        top={20}
-        right={20}
-      >
-        契約作成
-      </Button>
-
       <CreateContractModal
         isOpen={isCreateModalOpen}
         onClose={handleCloseCreateModal}
@@ -189,6 +181,35 @@ export default function Contracts() {
           handleSignup(email, password, maxMemberCount);
         }}
       />
+
+      {selectedContract && (
+        <EditContractModal
+          isOpen={isEditModalOpen}
+          onClose={handleCloseEditModal}
+          onEdit={(maxMemberCount) =>
+            handleEditConfirm(maxMemberCount.toString())
+          }
+          placeholder={selectedContract.max_member_count.toString()}
+        />
+      )}
+
+      {selectedContract && (
+        <DeleteContractModal
+          isOpen={isDeleteModalOpen}
+          onClose={handleCloseDeleteModal}
+          onDelete={() => handleDeleteConfirm(selectedContract.email)}
+          confirmText={selectedContract.email}
+          placeholder={selectedContract.email}
+        />
+      )}
+
+      <Box mb={4} overflow="hidden">
+        <Flex justifyContent="flex-end">
+          <Button colorScheme="blue" onClick={() => setCreateModalOpen(true)}>
+            契約作成
+          </Button>
+        </Flex>
+      </Box>
 
       <Table variant="simple">
         <Thead>
@@ -237,26 +258,6 @@ export default function Contracts() {
           ))}
         </Tbody>
       </Table>
-
-      {selectedContract && (
-        <EditContractModal
-          isOpen={isEditModalOpen}
-          onClose={handleCloseEditModal}
-          onEdit={(maxMemberCount) =>
-            handleEditConfirm(maxMemberCount.toString())
-          }
-          placeholder={selectedContract.max_member_count.toString()}
-        />
-      )}
-      {selectedContract && (
-        <DeleteContractModal
-          isOpen={isDeleteModalOpen}
-          onClose={handleCloseDeleteModal}
-          onDelete={() => handleDeleteConfirm(selectedContract.email)}
-          confirmText={selectedContract.email}
-          placeholder={selectedContract.email}
-        />
-      )}
     </>
   );
 }
