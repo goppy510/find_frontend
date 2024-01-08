@@ -242,11 +242,13 @@ export default function Contracts() {
                     setSelectedContract(contract);
                     setEditModalOpen(true);
                   }}
+                  mr={2}
                 />
                 {localStorageUserId !== contract.user_id.toString() && (
                   <IconButton
                     aria-label="削除"
                     icon={<FaTrashAlt />}
+                    colorScheme="red"
                     onClick={() => {
                       setSelectedContract(contract);
                       setDeleteModalOpen(true);
