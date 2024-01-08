@@ -85,8 +85,6 @@ const useCreateContract = () => {
     duplicateErrorMessage,
     unprocessibleEntityErrorMessage,
     successMessage,
-    isChecked,
-    setIsChecked,
     handleSignup,
     isCreated,
     setIsCreated,
