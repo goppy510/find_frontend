@@ -7,26 +7,26 @@ const useFetchContracts = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    const handleFetch = async () => {
-      try {
-        const response = await apiClient.get<Contract[]>('/api/contracts');
-        if (response.status === 200) {
-          setContracts(response.data);
-        } else {
-          setErrorMessage('契約データの取得に失敗しました。');
-        }
-      } catch (error) {
-        setErrorMessage('契約データの取得中にエラーが発生しました。');
-      } finally {
-        setIsLoading(false);
+  const handleFetch = async () => {
+    try {
+      const response = await apiClient.get<Contract[]>('/api/contracts');
+      if (response.status === 200) {
+        setContracts(response.data);
+      } else {
+        setErrorMessage('契約データの取得に失敗しました。');
       }
-    };
+    } catch (error) {
+      setErrorMessage('契約データの取得中にエラーが発生しました。');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
+  useEffect(() => {
     handleFetch();
   }, []);
 
-  return { contracts, setContracts, isLoading, errorMessage };
+  return { contracts, setContracts, isLoading, errorMessage, handleFetch };
 };
 
 export default useFetchContracts;
