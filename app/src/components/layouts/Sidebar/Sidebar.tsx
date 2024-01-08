@@ -68,6 +68,9 @@ export default function Sidebar() {
     window.location.href = '/';
   };
 
+  const hasAdmin = permissions
+    .map((permission) => permission.toString())
+    .includes('admin');
   const hasContract = permissions
     .map((permission) => permission.toString())
     .includes('contract');
@@ -94,27 +97,29 @@ export default function Sidebar() {
     <Box py={4}>
       {errorMessage && <ErrorToast message={errorMessage} />}
       <Flex justifyContent="center" direction="column">
-        <NavItem icon={FaHome} href="/">
-          ホーム
-        </NavItem>
-        {hasCreatePrompt && (
+        {(hasReadPrompt || hasAdmin) && (
+          <NavItem icon={FaHome} href="/">
+            ホーム
+          </NavItem>
+        )}
+        {(hasCreatePrompt || hasAdmin) && (
           <NavItem icon={FaUser} href="/prompts/create">
             プロンプト作成
           </NavItem>
         )}
-        {hasContract && (
+        {(hasContract || hasAdmin) && (
           <NavItem icon={FaFileContract} href="/contracts">
             契約管理
           </NavItem>
         )}
-        {hasUser && (
-          <NavItem icon={FaUserFriends} href="/users">
-            ユーザー管理
-          </NavItem>
-        )}
-        {hasPermission && (
+        {(hasPermission || hasAdmin) && (
           <NavItem icon={FaKey} href="/permissions">
             権限管理
+          </NavItem>
+        )}
+        {(hasUser || hasAdmin) && (
+          <NavItem icon={FaUserFriends} href="/users">
+            ユーザー管理
           </NavItem>
         )}
         <NavItem icon={FaUser} href="/profile/mypage">
