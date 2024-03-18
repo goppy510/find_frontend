@@ -13,17 +13,17 @@ import {
   Flex,
 } from '@chakra-ui/react';
 import { FaPen, FaTrashAlt } from 'react-icons/fa';
+import Loading from '@/components/elements/loading/Loading';
+import SuccessToast from '@/components/elements/toast/SuccessToast';
+import ErrorToast from '@/components/elements/toast/ErrorToast';
+import { Contract } from '@/features/contract/types/contractTypes';
 import CreateContractModal from '@/features/contract/components/CreateContractModal';
 import EditContractModal from '@/features/contract/components/EditContractModal';
 import DeleteContractModal from '@/components/elements/deleteModal/DeleteModal';
-import Loading from '@/components/elements/loading/Loading';
-import { Contract } from '@/features/contract/types/contractTypes';
 import useFetchContracts from '@/features/contract/hooks/useFetchContracts';
 import useCreateContract from '@/features/contract/hooks/useCreateContracts';
 import useEditContract from '@/features/contract/hooks/useEditContracts';
 import useDeleteContracts from '@/features/contract/hooks/useDeleteContracts';
-import SuccessToast from '@/components/elements/toast/SuccessToast';
-import ErrorToast from '@/components/elements/toast/ErrorToast';
 
 export default function Contracts() {
   const localStorageUserId = localStorage.getItem('userId');
@@ -45,7 +45,7 @@ export default function Contracts() {
 
   // 契約削除API
   const {
-    deleteContract,
+    handleDelete,
     isLoading: deleteIsLoading,
     errorMessage: deleteErrorMessage,
     successMessage: deleteSuccessMessage,
@@ -78,7 +78,7 @@ export default function Contracts() {
   const handleDeleteConfirm = async (email: string) => {
     if (selectedContract && selectedContract.email === email) {
       try {
-        await deleteContract(selectedContract.user_id);
+        await handleDelete(selectedContract.user_id);
         setContracts((prevContracts) =>
           prevContracts.filter((c) => c.user_id !== selectedContract.user_id)
         );
