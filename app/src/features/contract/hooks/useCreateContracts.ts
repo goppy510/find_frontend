@@ -10,7 +10,6 @@ const useCreateContract = () => {
   const [unprocessibleEntityErrorMessage, setUnprocessibleEntityErrorMessage] =
     useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const [isChecked, setIsChecked] = useState(false);
   const [isCreated, setIsCreated] = useState(false);
 
   const resetMessages = () => {
