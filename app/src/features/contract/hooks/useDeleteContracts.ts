@@ -7,7 +7,7 @@ const useDeleteContracts = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-  const deleteContract = async (userId: number) => {
+  const handleDelete = async (userId: number) => {
     setIsLoading(true);
     setErrorMessage(null);
     try {
@@ -21,7 +21,7 @@ const useDeleteContracts = () => {
     }
   };
 
-  return { deleteContract, isLoading, errorMessage, successMessage };
+  return { handleDelete, isLoading, errorMessage, successMessage };
 };
 
 export default useDeleteContracts;
