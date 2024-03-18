@@ -26,7 +26,7 @@ export default function RootLayout({
                 "sidebar main"
                 "footer footer"
               `}
-              templateRows="60px 1fr"
+              templateRows="60px 60px"
               templateColumns="250px 1fr"
               gap={2}
             >
