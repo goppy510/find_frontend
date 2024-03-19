@@ -9,8 +9,18 @@ import {
   FaFileContract,
 } from 'react-icons/fa';
 import { useState, useEffect, MouseEvent } from 'react';
-import useFetchPermissions from '@/hooks/useFetchPermission';
+import useFetchOwnPermissions from '@/hooks/useFetchOwnPermission';
 import ErrorToast from '@/components/elements/toast/ErrorToast';
+import {
+  hasAdmin,
+  hasContract,
+  hasUser,
+  hasPermission,
+  hasCreatePrompt,
+  hasReadPrompt,
+  hasDestroyPrompt,
+  hasUpdatePrompt,
+} from '@/lib/OwnPermissions';
 
 type NavItemProps = {
   icon: any;
@@ -52,7 +62,7 @@ const NavItem = ({ icon, children, href, onClick }: NavItemProps) => {
 
 export default function Sidebar() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const { permissions, isLoading, errorMessage } = useFetchPermissions();
+  const { permissions, errorMessage } = useFetchOwnPermissions();
 
   useEffect(() => {
     const token = localStorage.getItem('jwtToken');
@@ -68,56 +78,31 @@ export default function Sidebar() {
     window.location.href = '/';
   };
 
-  const hasAdmin = permissions
-    .map((permission) => permission.toString())
-    .includes('admin');
-  const hasContract = permissions
-    .map((permission) => permission.toString())
-    .includes('contract');
-  const hasUser = permissions
-    .map((permission) => permission.toString())
-    .includes('user');
-  const hasPermission = permissions
-    .map((permission) => permission.toString())
-    .includes('permission');
-  const hasCreatePrompt = permissions
-    .map((permission) => permission.toString())
-    .includes('create_prompt');
-  const hasReadPrompt = permissions
-    .map((permission) => permission.toString())
-    .includes('read_prompt');
-  const hasUpdatePrompt = permissions
-    .map((permission) => permission.toString())
-    .includes('update_prompt');
-  const hasDestroyPrompt = permissions
-    .map((permission) => permission.toString())
-    .includes('destroy_prompt');
-
   return (
     <Box py={4}>
       {errorMessage && <ErrorToast message={errorMessage} />}
       <Flex justifyContent="center" direction="column">
-        {(hasReadPrompt || hasAdmin) && (
+        {(hasReadPrompt(permissions) || hasAdmin(permissions)) && (
           <NavItem icon={FaHome} href="/">
             ホーム
           </NavItem>
         )}
-        {(hasCreatePrompt || hasAdmin) && (
+        {(hasCreatePrompt(permissions) || hasAdmin(permissions)) && (
           <NavItem icon={FaUser} href="/prompts/create">
             プロンプト作成
           </NavItem>
         )}
-        {(hasContract || hasAdmin) && (
+        {(hasContract(permissions) || hasAdmin(permissions)) && (
           <NavItem icon={FaFileContract} href="/contracts">
             契約管理
           </NavItem>
         )}
-        {(hasPermission || hasAdmin) && (
+        {(hasPermission(permissions) || hasAdmin(permissions)) && (
           <NavItem icon={FaKey} href="/permissions">
             権限管理
           </NavItem>
         )}
-        {(hasUser || hasAdmin) && (
+        {(hasUser(permissions) || hasAdmin(permissions)) && (
           <NavItem icon={FaUserFriends} href="/users">
             ユーザー管理
           </NavItem>
