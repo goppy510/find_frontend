@@ -12,24 +12,24 @@ const useEditPermission = () => {
     setSuccessMessage('');
   };
 
-  const handleEdit = async (email: string, permissions: string[]) => {
+  const handleUpdate = async (email: string, permissions: string[]) => {
     resetMessages();
     try {
+      const endpoint = `/api/permissions/`;
       const params = {
         email: email,
         permissions: permissions,
       };
-      const endpoint = `/api/permissions/${email}`;
       const response = await apiClient.put(endpoint, params);
 
       if (response.status === 200) {
-        setSuccessMessage('権限データを更新しました');
+        setSuccessMessage('権限を更新しました');
         setIsEdited(true);
       } else {
-        setErrorMessage('権限データの更新に失敗しました');
+        setErrorMessage('権限の更新に失敗しました');
       }
     } catch (error) {
-      setErrorMessage('権限データの更新に失敗しました');
+      setErrorMessage('権限の更新に失敗しました');
     } finally {
       setIsLoading(false); // 成功または失敗後にisLoadingをfalseに設定
     }
@@ -40,7 +40,7 @@ const useEditPermission = () => {
     setIsLoading,
     errorMessage,
     successMessage,
-    handleEdit,
+    handleUpdate,
     isEdited,
     setIsEdited,
   };
