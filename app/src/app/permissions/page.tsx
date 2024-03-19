@@ -59,7 +59,7 @@ export default function Permissions() {
     errorMessage: editErrorMessage,
     successMessage: editSuccessMessage,
     isLoading: editIsLoading,
-    handleEdit,
+    handleUpdate,
     isEdited,
     setIsEdited,
   } = useEditPermission();
@@ -90,18 +90,6 @@ export default function Permissions() {
     }
   };
 
-  // 編集操作
-  const handleEditConfirm = async (amail: string, permissions: string[]) => {
-    if (selectedPermission) {
-      try {
-        await handleEdit(selectedPermission.email, permissions);
-        setEditModalOpen(false); // モーダルを閉じる
-      } catch (error) {
-        // エラー処理
-      }
-    }
-  };
-
   const reversePermissionMap = Object.entries(permissionMap).reduce(
     (acc, [jp, en]) => {
       acc[en] = jp;
@@ -110,22 +98,17 @@ export default function Permissions() {
     {} as { [key: string]: string }
   );
 
-  // 権限列の値を日本語に変換して表示
-  const renderPermissions = (permissionList: string[]) => {
-    return permissionList
-      .map((permission) => reversePermissionMap[permission] || permission)
-      .join(', ');
+  const checkedPermissionsJp = (userPermissions: string[]) => {
+    // APIから取得したユーザーの権限名の配列を逆マッピングして日本語に変換
+    return userPermissions.map((en) => reversePermissionMap[en] || en);
   };
 
   const calculateCheckedPermissions = (userPermissions: string[]) => {
-    // APIから取得したユーザーの権限名の配列を逆マッピングして日本語に変換
-    const checkedPermissionLabels = userPermissions.map(
-      (en) => reversePermissionMap[en] || en
-    );
     // すべての権限に対するチェック状態のマップを作成
     const allPermissionsCheckedState: { [key: string]: boolean } = {};
     Object.keys(permissionMap).forEach((jp) => {
-      allPermissionsCheckedState[jp] = checkedPermissionLabels.includes(jp);
+      allPermissionsCheckedState[jp] =
+        checkedPermissionsJp(userPermissions).includes(jp);
     });
     return allPermissionsCheckedState;
   };
@@ -176,7 +159,7 @@ export default function Permissions() {
     }
   };
 
-  // 契約作成モーダルを閉じる
+  // 作成モーダルを閉じる
   const handleCloseCreateModal = () => {
     setCreateModalOpen(false);
     if (createSuccessMessage) {
@@ -210,9 +193,11 @@ export default function Permissions() {
         <EditPermissionModal
           isOpen={isEditModalOpen}
           onClose={handleCloseEditModal}
-          onEdit={(permissions) =>
-            handleEditConfirm(selectedPermission.email, permissions)
-          }
+          onEdit={(email, permissions) => handleUpdate(email, permissions)}
+          email={selectedPermission.email}
+          selectedPermissions={checkedPermissionsJp(
+            selectedPermission.permissions
+          )}
         />
       )}
 
