@@ -21,10 +21,8 @@ const useCreatePermission = () => {
     try {
       const endpoint = '/api/permissions';
       const params = {
-        permissions: {
-          email: email,
-          permissions: permissions,
-        },
+        email: email,
+        permissions: permissions,
       };
       const response = await apiClient.post(endpoint, params);
 
