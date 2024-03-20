@@ -11,7 +11,6 @@ import {
   FormLabel,
   Input,
   Button,
-  Checkbox,
 } from '@chakra-ui/react';
 
 interface CreateContractModalProps {
