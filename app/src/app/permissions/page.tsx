@@ -27,6 +27,7 @@ import useFetchPermissions from '@/features/permission/hooks/useFetchPermissions
 import useCreatePermission from '@/features/permission/hooks/useCreatePermissions';
 import useEditPermission from '@/features/permission/hooks/useEditPermissions';
 import useDeletePermission from '@/features/permission/hooks/useDeletePermissions';
+import { set } from 'react-hook-form';
 
 // Permissionsページのメインコンポーネント
 export default function Permissions() {
@@ -43,7 +44,6 @@ export default function Permissions() {
     setPermissions,
     isLoading: fetchIsLoading,
     errorMessage: fetchErrorMessage,
-    errorMessage,
     handleFetch,
   } = useFetchPermissions();
 
@@ -53,6 +53,8 @@ export default function Permissions() {
     handleCreate,
     isCreated,
     setIsCreated,
+    setSuccessMessage: setCreateSuccessMessage,
+    setErrorMessage: setCreateErrorMessage,
   } = useCreatePermission();
 
   const {
@@ -62,6 +64,8 @@ export default function Permissions() {
     handleUpdate,
     isEdited,
     setIsEdited,
+    setSuccessMessage: setEditSuccessMessage,
+    setErrorMessage: setEditErrorMessage,
   } = useEditPermission();
 
   const {
@@ -69,27 +73,11 @@ export default function Permissions() {
     successMessage: deleteSuccessMessage,
     isLoading: deleteIsLoading,
     handleDelete,
+    setSuccessMessage: setDeleteSuccessMessage,
+    setErrorMessage: setDeleteErrorMessage,
   } = useDeletePermission();
 
   const [justDeleted, setJustDeleted] = useState(false);
-
-  // 削除操作
-  const handleDeleteConfirm = async (email: string) => {
-    if (selectedPermission && selectedPermission.email === email) {
-      try {
-        await handleDelete(selectedPermission.email);
-        setPermissions((prevPermissions) =>
-          prevPermissions.filter(
-            (p) => p.user_id !== selectedPermission.user_id
-          )
-        );
-        setDeleteModalOpen(false); // モーダルを閉じる
-      } catch (error) {
-        // エラー処理
-      }
-    }
-  };
-
   const reversePermissionMap = Object.entries(permissionMap).reduce(
     (acc, [jp, en]) => {
       acc[en] = jp;
@@ -113,11 +101,30 @@ export default function Permissions() {
     return allPermissionsCheckedState;
   };
 
+  // 削除操作
+  const handleDeleteConfirm = async (email: string) => {
+    if (selectedPermission && selectedPermission.email === email) {
+      try {
+        await handleDelete(selectedPermission.user_id.toString());
+        setPermissions((prevPermissions) =>
+          prevPermissions.filter(
+            (p) => p.user_id !== selectedPermission.user_id
+          )
+        );
+        setDeleteModalOpen(false); // モーダルを閉じる
+      } catch (error) {
+        // エラー処理
+      }
+    }
+  };
+
   // 作成後の処理
   useEffect(() => {
     if (isCreated) {
       handleFetch();
-      setIsCreated(false); // フラグをリセット
+      setIsCreated(false);
+      setCreateSuccessMessage('');
+      setCreateErrorMessage('');
     }
   }, [isCreated, setIsCreated]);
 
@@ -125,7 +132,9 @@ export default function Permissions() {
   useEffect(() => {
     if (isEdited) {
       handleFetch();
-      setIsEdited(false); // フラグをリセット
+      setIsEdited(false);
+      setEditSuccessMessage('');
+      setEditErrorMessage('');
     }
   }, [isEdited, setIsEdited]);
 
@@ -136,8 +145,10 @@ export default function Permissions() {
         (p) => p.email !== selectedPermission?.email
       );
       setPermissions(updatedPermissions);
-      setJustDeleted(false); // フラグをリセット
-      setSelectedPermission(undefined); // 選択した権限をリセット
+      setJustDeleted(false);
+      setSelectedPermission(undefined);
+      setDeleteSuccessMessage('');
+      setDeleteErrorMessage('');
     }
   }, [justDeleted, selectedPermission, permissions, setPermissions]);
 
@@ -145,26 +156,17 @@ export default function Permissions() {
   const handleCloseDeleteModal = () => {
     setDeleteModalOpen(false);
     setSelectedPermission(undefined);
-    if (deleteSuccessMessage) {
-      return <SuccessToast message={deleteSuccessMessage} />;
-    }
   };
 
   // 編集モーダルを閉じる
   const handleCloseEditModal = () => {
     setEditModalOpen(false);
     setSelectedPermission(undefined);
-    if (editSuccessMessage) {
-      return <SuccessToast message={editSuccessMessage} />;
-    }
   };
 
   // 作成モーダルを閉じる
   const handleCloseCreateModal = () => {
     setCreateModalOpen(false);
-    if (createSuccessMessage) {
-      return <SuccessToast message={createSuccessMessage} />;
-    }
   };
 
   if (fetchIsLoading || deleteIsLoading) {
@@ -193,7 +195,9 @@ export default function Permissions() {
         <EditPermissionModal
           isOpen={isEditModalOpen}
           onClose={handleCloseEditModal}
-          onEdit={(email, permissions) => handleUpdate(email, permissions)}
+          onEdit={(permissions) =>
+            handleUpdate(selectedPermission.user_id.toString(), permissions)
+          }
           email={selectedPermission.email}
           selectedPermissions={checkedPermissionsJp(
             selectedPermission.permissions
