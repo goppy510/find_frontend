@@ -20,7 +20,7 @@ import {
   hasReadPrompt,
   hasDestroyPrompt,
   hasUpdatePrompt,
-} from '@/lib/OwnPermissions';
+} from '@/lib/ownPermissions';
 
 type NavItemProps = {
   icon: any;
