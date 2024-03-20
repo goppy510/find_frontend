@@ -12,12 +12,11 @@ const useEditPermission = () => {
     setSuccessMessage('');
   };
 
-  const handleUpdate = async (email: string, permissions: string[]) => {
+  const handleUpdate = async (user_id: string, permissions: string[]) => {
     resetMessages();
     try {
-      const endpoint = `/api/permissions/`;
+      const endpoint = `/api/permissions/${user_id}`;
       const params = {
-        email: email,
         permissions: permissions,
       };
       const response = await apiClient.put(endpoint, params);
@@ -43,6 +42,8 @@ const useEditPermission = () => {
     handleUpdate,
     isEdited,
     setIsEdited,
+    setSuccessMessage,
+    setErrorMessage,
   };
 };
 
