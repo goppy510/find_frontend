@@ -104,7 +104,7 @@ export default function Sidebar() {
         )}
         {(hasUser(permissions) || hasAdmin(permissions)) && (
           <NavItem icon={FaUserFriends} href="/users">
-            ユーザー管理
+            メンバー管理
           </NavItem>
         )}
         <NavItem icon={FaUser} href="/profile/mypage">
