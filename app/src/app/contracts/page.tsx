@@ -24,6 +24,7 @@ import useFetchContracts from '@/features/contract/hooks/useFetchContracts';
 import useCreateContract from '@/features/contract/hooks/useCreateContracts';
 import useEditContract from '@/features/contract/hooks/useEditContracts';
 import useDeleteContracts from '@/features/contract/hooks/useDeleteContracts';
+import { set } from 'react-hook-form';
 
 export default function Contracts() {
   const localStorageUserId = localStorage.getItem('userId');
@@ -34,7 +35,7 @@ export default function Contracts() {
     Contract | undefined
   >(undefined);
 
-  // 契約一覧取得API
+  // 一覧取得API
   const {
     contracts,
     setContracts,
@@ -43,25 +44,7 @@ export default function Contracts() {
     handleFetch,
   } = useFetchContracts();
 
-  // 契約削除API
-  const {
-    handleDelete,
-    isLoading: deleteIsLoading,
-    errorMessage: deleteErrorMessage,
-    successMessage: deleteSuccessMessage,
-  } = useDeleteContracts();
-
-  // 契約編集API
-  const {
-    isLoading: editIsLoading,
-    errorMessage: editErrorMessage,
-    successMessage: editSuccessMessage,
-    handleEdit,
-    isEdited,
-    setIsEdited,
-  } = useEditContract();
-
-  // 契約作成API
+  // 作成API
   const {
     errorMessage: createErrorMessage,
     duplicateErrorMessage,
@@ -70,7 +53,31 @@ export default function Contracts() {
     handleSignup,
     isCreated,
     setIsCreated,
+    setSuccessMessage: setCreateSuccessMessage,
+    setErrorMessage: setCreateErrorMessage,
   } = useCreateContract();
+
+  // 編集API
+  const {
+    isLoading: editIsLoading,
+    errorMessage: editErrorMessage,
+    successMessage: editSuccessMessage,
+    handleEdit,
+    isEdited,
+    setIsEdited,
+    setSuccessMessage: setEditSuccessMessage,
+    setErrorMessage: setEditErrorMessage,
+  } = useEditContract();
+
+  // 削除API
+  const {
+    handleDelete,
+    isLoading: deleteIsLoading,
+    errorMessage: deleteErrorMessage,
+    successMessage: deleteSuccessMessage,
+    setSuccessMessage: setDeleteSuccessMessage,
+    setErrorMessage: setDeleteErrorMessage,
+  } = useDeleteContracts();
 
   const [justDeleted, setJustDeleted] = useState(false);
 
@@ -101,19 +108,23 @@ export default function Contracts() {
     }
   };
 
-  // 契約作成後の処理
+  // 作成後の処理
   useEffect(() => {
     if (isCreated) {
       handleFetch();
-      setIsCreated(false); // フラグをリセット
+      setIsCreated(false);
+      setCreateSuccessMessage('');
+      setCreateErrorMessage('');
     }
   }, [isCreated, setIsCreated]);
 
-  // 契約編集後の処理
+  // 編集後の処理
   useEffect(() => {
     if (isEdited) {
       handleFetch();
-      setIsEdited(false); // フラグをリセット
+      setIsEdited(false);
+      setEditSuccessMessage('');
+      setEditErrorMessage('');
     }
   }, [isEdited, setIsEdited]);
 
@@ -125,15 +136,16 @@ export default function Contracts() {
         (c) => c.user_id !== selectedContract?.user_id
       );
       setContracts(updatedContracts);
-      setJustDeleted(false); // フラグをリセット
-      setSelectedContract(undefined); // 選択した契約をリセット
+      setJustDeleted(false);
+      setSelectedContract(undefined);
+      setDeleteSuccessMessage('');
+      setDeleteErrorMessage('');
     }
   }, [justDeleted, selectedContract, contracts, setContracts]);
 
-  // 契約削除モーダルを閉じる
-  const handleCloseDeleteModal = () => {
-    setDeleteModalOpen(false);
-    setSelectedContract(undefined);
+  // 契約作成モーダルを閉じる
+  const handleCloseCreateModal = () => {
+    setCreateModalOpen(false);
   };
 
   // 契約編集モーダルを閉じる
@@ -142,9 +154,10 @@ export default function Contracts() {
     setSelectedContract(undefined);
   };
 
-  // 契約作成モーダルを閉じる
-  const handleCloseCreateModal = () => {
-    setCreateModalOpen(false);
+  // 契約削除モーダルを閉じる
+  const handleCloseDeleteModal = () => {
+    setDeleteModalOpen(false);
+    setSelectedContract(undefined);
   };
 
   if (fetchIsLoading || deleteIsLoading) {
