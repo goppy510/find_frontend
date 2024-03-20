@@ -87,6 +87,8 @@ const useCreateContract = () => {
     handleSignup,
     isCreated,
     setIsCreated,
+    setSuccessMessage,
+    setErrorMessage,
   };
 };
 

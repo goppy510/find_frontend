@@ -42,6 +42,8 @@ const useEditContract = () => {
     handleEdit,
     isEdited,
     setIsEdited,
+    setSuccessMessage,
+    setErrorMessage,
   };
 };
 
