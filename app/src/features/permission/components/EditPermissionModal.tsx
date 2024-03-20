@@ -36,7 +36,7 @@ import {
 interface EditPermissionModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onEdit: (email: string, permissions: string[]) => void;
+  onEdit: (permissions: string[]) => void;
   email: string;
   selectedPermissions: string[];
 }
@@ -89,7 +89,7 @@ const EditPermissionModal: React.FC<EditPermissionModalProps> = ({
     const permissionValues = permissionsKeys.map(
       (key) => permissionMap[key as PermissionKey]
     );
-    onEdit(email, permissionValues);
+    onEdit(permissionValues);
     setCheckedState({} as { [key in PermissionKey]: boolean });
     onClose();
   };
