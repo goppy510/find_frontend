@@ -134,26 +134,17 @@ export default function Contracts() {
   const handleCloseDeleteModal = () => {
     setDeleteModalOpen(false);
     setSelectedContract(undefined);
-    if (deleteSuccessMessage) {
-      return <SuccessToast message={deleteSuccessMessage} />;
-    }
   };
 
   // 契約編集モーダルを閉じる
   const handleCloseEditModal = () => {
     setEditModalOpen(false);
     setSelectedContract(undefined);
-    if (editSuccessMessage) {
-      return <SuccessToast message={editSuccessMessage} />;
-    }
   };
 
   // 契約作成モーダルを閉じる
   const handleCloseCreateModal = () => {
     setCreateModalOpen(false);
-    if (createSuccessMessage) {
-      return <SuccessToast message={createSuccessMessage} />;
-    }
   };
 
   if (fetchIsLoading || deleteIsLoading) {
