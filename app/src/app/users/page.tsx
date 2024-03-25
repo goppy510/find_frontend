@@ -12,7 +12,7 @@ import {
   Box,
   Flex,
 } from '@chakra-ui/react';
-import { FaPen, FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt } from 'react-icons/fa';
 import Loading from '@/components/elements/loading/Loading';
 import SuccessToast from '@/components/elements/toast/SuccessToast';
 import ErrorToast from '@/components/elements/toast/ErrorToast';
