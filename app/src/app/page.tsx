@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import { Grid, GridItem, Flex } from '@chakra-ui/react';
-import Loading from '@/components/elements/loading/Loading';
 import ErrorToast from '@/components/elements/toast/ErrorToast';
 import Prompt from '@/features/prompt/components/Prompt';
 import Pagination from '@/components/elements/pagination/components/Pagination';
