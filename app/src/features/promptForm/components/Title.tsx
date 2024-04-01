@@ -5,7 +5,7 @@ import {
   Textarea,
   FormErrorMessage,
   FormHelperText,
-} from "@/features/components";
+} from '@chakra-ui/react';
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
 interface Props {
@@ -24,18 +24,13 @@ export default function Title({
   register,
 }: Props) {
   return (
-    <FormControl isInvalid={Boolean(errors?.text)}>
+    <FormControl isInvalid={Boolean(errors?.message)}>
       <FormLabel htmlFor="title">タイトル</FormLabel>
-      <Textarea
-        id="title"
-        {...register}
-        value={text}
-        onChange={handleChange}
-      />
-      <FormErrorMessage>{errors?.text && errors?.text.message}</FormErrorMessage>
+      <Textarea id="title" {...register} value={text} onChange={handleChange} />
+      <FormErrorMessage>{errors && errors?.message}</FormErrorMessage>
       <FormHelperText>
         {text.length}/{maxLength}
       </FormHelperText>
     </FormControl>
   );
-};
+}
