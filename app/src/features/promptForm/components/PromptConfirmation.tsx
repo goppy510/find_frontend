@@ -1,13 +1,6 @@
-"use client"; // appディレクトリはSSRなのでクライアントコンポーネントにするには最上部にこの宣言が必要
-import {
-  Box,
-  Heading,
-  Container,
-  Stack,
-  Button,
-  Text
-} from "@chakra-ui/react";
-import { FormData } from "@/features/cardForm/types/postTypes";
+'use client'; // appディレクトリはSSRなのでクライアントコンポーネントにするには最上部にこの宣言が必要
+import { Box, Heading, Container, Stack, Button, Text } from '@chakra-ui/react';
+import { FormData } from '@/features/promptForm/types/postTypes';
 
 type ConfirmationProps = {
   formData: FormData;
@@ -15,13 +8,11 @@ type ConfirmationProps = {
   onSubmitButtonClick: () => void;
 };
 
-
 export default function Confirmation({
   formData,
   onBackButtonClick,
   onSubmitButtonClick,
 }: ConfirmationProps) {
-
   // 戻るボタン
   const handleBackButtonClick = () => {
     onBackButtonClick(); // 親コンポーネントが渡してくれた戻るボタンのハンドラーを実行する
@@ -70,13 +61,13 @@ export default function Confirmation({
             <Text fontWeight="bold" mr="4" fontSize="lg">
               入力例:
             </Text>
-            <Text>{formData.exampleInput}</Text>
+            <Text>{formData.inputExample}</Text>
           </Box>
           <Box mb="6">
             <Text fontWeight="bold" mr="4" fontSize="lg">
               出力例:
             </Text>
-            <Text>{formData.exampleOutput}</Text>
+            <Text>{formData.outputExample}</Text>
           </Box>
           <Box display="flex" justifyContent="space-between">
             <Button
@@ -87,9 +78,10 @@ export default function Confirmation({
               color="white"
               bg="gray.400"
               _hover={{
-                bg: "gray.500",
+                bg: 'gray.500',
               }}
-              onClick={handleBackButtonClick}>
+              onClick={handleBackButtonClick}
+            >
               戻る
             </Button>
             <Button
@@ -100,9 +92,10 @@ export default function Confirmation({
               color="white"
               bg="messenger.400"
               _hover={{
-                bg: "messenger.500",
+                bg: 'messenger.500',
               }}
-              onClick={handleConfirmationSubmit}>
+              onClick={handleConfirmationSubmit}
+            >
               投稿する
             </Button>
           </Box>
