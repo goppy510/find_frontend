@@ -38,6 +38,7 @@ export interface PostId {
 export interface FormData {
   model: string;
   title: string;
+  category: string;
   description: string;
   prompt: string;
   inputExample: string;
