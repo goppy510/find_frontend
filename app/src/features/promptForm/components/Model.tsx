@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  FormControl,
-  FormLabel,
-  Select
-} from "@/features/components";
+import { FormControl, FormLabel, Select } from '@chakra-ui/react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface Props {
@@ -12,23 +8,16 @@ interface Props {
   register: UseFormRegisterReturn;
 }
 
-export default function Model({
-  text,
-  handleChange,
-  register,
-}: Props) {
+export default function Model({ text, handleChange, register }: Props) {
   return (
     <FormControl>
       <FormLabel htmlFor="displayName">モデル</FormLabel>
-      <Select
-        id="model"
-        {...register}
-        value={text}
-        onChange={handleChange}
-      >
-        <option value='ChatGPT-3.5' selected>ChatGPT-3.5</option>
-        <option value='ChatGPT-4'>ChatGPT-4</option>
+      <Select id="model" {...register} value={text} onChange={handleChange}>
+        <option value="ChatGPT-3.5" selected>
+          ChatGPT-3.5
+        </option>
+        <option value="ChatGPT-4">ChatGPT-4</option>
       </Select>
     </FormControl>
   );
-};
+}
