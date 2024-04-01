@@ -1,7 +1,6 @@
 // useDeleteContracts フック
 import { useState } from 'react';
 import apiClient from '@/lib/api-client';
-import { set } from 'react-hook-form';
 
 const useDeleteContracts = () => {
   const [isLoading, setIsLoading] = useState(false);
