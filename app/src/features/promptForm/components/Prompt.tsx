@@ -5,7 +5,7 @@ import {
   Textarea,
   FormErrorMessage,
   FormHelperText,
-} from "@/features/components";
+} from '@chakra-ui/react';
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
 interface Props {
@@ -24,7 +24,7 @@ export default function Prompt({
   register,
 }: Props) {
   return (
-    <FormControl isInvalid={Boolean(errors?.text)}>
+    <FormControl isInvalid={Boolean(errors?.message)}>
       <FormLabel htmlFor="prompt">プロンプト</FormLabel>
       <Textarea
         id="prompt"
@@ -32,12 +32,10 @@ export default function Prompt({
         value={text}
         onChange={handleChange}
       />
-      <FormErrorMessage>
-        {errors?.text && errors?.text.message}
-      </FormErrorMessage>
+      <FormErrorMessage>{errors && errors?.message}</FormErrorMessage>
       <FormHelperText>
         {text.length}/{maxLength}
       </FormHelperText>
     </FormControl>
   );
-};
+}
