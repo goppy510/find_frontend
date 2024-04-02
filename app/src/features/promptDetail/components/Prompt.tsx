@@ -1,8 +1,8 @@
 import React from 'react';
+import { useState } from 'react';
 import { Box, Flex, IconButton } from "@chakra-ui/react";
 import { FaCopy } from "react-icons/fa";
 import SuccessToast from '@/components/elements/toast/SuccessToast';
-
 
 type Props = {
   text: string;
@@ -12,12 +12,16 @@ export default function Prompt({text}: Props) {
   const lines = text.split('\n');
   const height = `${2 + lines.length * 1.5}em`;
 
+  const [showToast, setShowToast] = useState(false); 
+
   // コピーボタンがクリックされたときの処理
   const handleCopyClick = () => {
     navigator.clipboard.writeText(text);
-    return (
-      <SuccessToast message="コピーしました" />
-    );
+    setShowToast(true); // トーストを表示
+    // 2秒後にトーストを非表示にする
+    setTimeout(() => {
+      setShowToast(false);
+    }, 2000);
   };
 
   return (
@@ -29,6 +33,8 @@ export default function Prompt({text}: Props) {
       borderRadius="xl"  // ここで角を丸める
       position="relative"
     >
+      {showToast && <SuccessToast message="コピーしました" />}
+
       <Flex justifyContent="space-between" alignItems="center">
         <Box>
           <Box fontSize="1xl" mb="4" mx="3">
