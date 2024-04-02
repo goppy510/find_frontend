@@ -41,8 +41,8 @@ export interface FormData {
   category: string;
   description: string;
   prompt: string;
-  inputExample: string;
-  outputExample: string;
+  input_example: string;
+  output_example: string;
 }
 
 // ヘッダーコンポーネント用
