@@ -3,7 +3,7 @@ export interface PromptDetailType {
   id: number;
   promptUuid: string;
   category: string;
-  about: string;
+  description: string;
   title: string;
   inputExample: string;
   outputExample: string;
