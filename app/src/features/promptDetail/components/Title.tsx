@@ -7,9 +7,9 @@ type Props = {
 
 export default function Title({ title }: Props) {
   return (
-    <Flex justifyContent="space-between" alignItems="center" py="8" my="5">
+    <Flex justifyContent="space-between" alignItems="center">
       <Box mx="auto">
-        <Box as="h1" fontSize="3xl" fontWeight="bold" mb="4">
+        <Box as="h1" fontSize="3xl" fontWeight="bold" mb="3" my="5">
           {title}
         </Box>
       </Box>
