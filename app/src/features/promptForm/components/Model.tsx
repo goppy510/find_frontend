@@ -13,10 +13,10 @@ export default function Model({ text, handleChange, register }: Props) {
     <FormControl>
       <FormLabel htmlFor="displayName">モデル</FormLabel>
       <Select id="model" {...register} value={text} onChange={handleChange}>
-        <option value="ChatGPT-3.5" selected>
-          ChatGPT-3.5
+        <option value="GPT-3.5">ChatGPT-3.5</option>
+        <option value="GPT-4" selected>
+          ChatGPT-4
         </option>
-        <option value="ChatGPT-4">ChatGPT-4</option>
       </Select>
     </FormControl>
   );
