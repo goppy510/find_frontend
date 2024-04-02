@@ -1,6 +1,6 @@
 export { default as Category } from './Category';
 export { default as DetailHeader } from './DetailHeader';
-export { default as About } from './About';
+export { default as Description } from './Description';
 export { default as InputExample } from './InputExample';
 export { default as OutputExample } from './OutputExample';
 export { default as Prompt } from './Prompt';
