@@ -13,7 +13,7 @@ const usePostPrompt = () => {
     setErrorMessage(null);
     try {
       const params = {
-        prompt: promptData,
+        prompts: promptData,
       };
       const response = await apiClient.post('/api/prompts', params);
       if (response.status === 200) {
