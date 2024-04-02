@@ -1,4 +1,5 @@
 'use client';
+import { useState } from "react";
 import { PromptDetailType } from "@/features/promptDetail/types/promptDetailTypes";
 import {
   Box,
@@ -14,21 +15,24 @@ import {
 } from "@/features/promptDetail/components";
 
 export default function DetailHeader({
+  id,
   title,
   nickname,
-  likesCount,
-  bookmarksCount,
+  likesCount: initialLikesCount,
+  bookmarksCount: initialBookmarksCount,
   generativeAiModel
 }: PromptDetailType) {
+  const [likesCount, setLikesCount] = useState<number>(initialLikesCount);
+
   return (
-    <Box w={{ base: '100%' }} h={{ md: '30vh' }}>
+    <Box w={{ base: '100%' }}>
       <Title title={title} />
       <Box display={{base: 'block', md: 'flex'}}>
         <Box w={{ base: '100%', md: '50%'}} >
           <Flex justifyContent="space-between" alignItems="center" my="5">
             <Creator userLink="" nickname={nickname} />
-            <BookmarksCount bookmarksCount={bookmarksCount} />
-            <LikesCount likesCount={likesCount} />
+            <BookmarksCount promptId={id} />
+            <LikesCount likesCount={likesCount} promptId={id} setLikesCount={setLikesCount} />
             <GenerativeAiModel generativeAiModel={generativeAiModel} />
           </Flex>
         </Box>
