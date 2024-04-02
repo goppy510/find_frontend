@@ -47,6 +47,12 @@ export default function Confirmation({
           </Box>
           <Box mb="6">
             <Text fontWeight="bold" mr="4" fontSize="lg">
+              カテゴリ
+            </Text>
+            <Text>{formData.category}</Text>
+          </Box>
+          <Box mb="6">
+            <Text fontWeight="bold" mr="4" fontSize="lg">
               概要欄:
             </Text>
             <Text>{formData.description}</Text>
@@ -61,13 +67,13 @@ export default function Confirmation({
             <Text fontWeight="bold" mr="4" fontSize="lg">
               入力例:
             </Text>
-            <Text>{formData.inputExample}</Text>
+            <Text>{formData.input_example}</Text>
           </Box>
           <Box mb="6">
             <Text fontWeight="bold" mr="4" fontSize="lg">
               出力例:
             </Text>
-            <Text>{formData.outputExample}</Text>
+            <Text>{formData.output_example}</Text>
           </Box>
           <Box display="flex" justifyContent="space-between">
             <Button
