@@ -20,8 +20,14 @@ const useFetchOwnPermissions = () => {
         } else {
           setErrorMessage('権限の取得に失敗しました。');
         }
-      } catch (error) {
-        setErrorMessage('権限の取得中にエラーが発生しました。');
+      } catch (error: any) {
+        if (error?.response && error?.response.status === 401) {
+          setErrorMessage(
+            'トークンの有効期限が切れています。再ログインしてください。'
+          );
+        } else {
+          setErrorMessage('権限の取得中にエラーが発生しました。');
+        }
       } finally {
         setIsLoading(false);
       }
@@ -30,7 +36,7 @@ const useFetchOwnPermissions = () => {
     handleFetch();
   }, []);
 
-  return { permissions, isLoading, errorMessage };
+  return { permissions, isLoading, errorMessage, setErrorMessage };
 };
 
 export default useFetchOwnPermissions;
