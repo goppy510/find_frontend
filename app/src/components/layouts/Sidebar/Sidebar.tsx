@@ -18,9 +18,8 @@ import {
   hasPermission,
   hasCreatePrompt,
   hasReadPrompt,
-  hasDestroyPrompt,
-  hasUpdatePrompt,
 } from '@/lib/ownPermissions';
+import { set } from 'react-hook-form';
 
 type NavItemProps = {
   icon: any;
@@ -62,7 +61,8 @@ const NavItem = ({ icon, children, href, onClick }: NavItemProps) => {
 
 export default function Sidebar() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const { permissions, errorMessage } = useFetchOwnPermissions();
+  const { permissions, errorMessage, setErrorMessage } =
+    useFetchOwnPermissions();
 
   useEffect(() => {
     const token = localStorage.getItem('jwtToken');
@@ -71,51 +71,73 @@ export default function Sidebar() {
     }
   }, []);
 
+  useEffect(() => {
+    // 現在のパスを確認
+    const currentPath = window.location.pathname;
+    // errorMessage があるが、現在がログインページではない場合にリダイレクト
+    if (errorMessage && currentPath !== '/login') {
+      expiredLogout;
+      window.location.href = '/login';
+    }
+    expiredLogout;
+  }, [errorMessage]);
+
   const handleLogout = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault(); // デフォルトのリンク動作をキャンセル
     localStorage.removeItem('jwtToken'); // JWTトークンを削除
     setLoggedIn(false); // ログインの状態を更新
+    setErrorMessage(null); // エラーメッセージをリセット
     window.location.href = '/';
+  };
+
+  const expiredLogout = () => {
+    localStorage.removeItem('jwtToken'); // JWTトークンを削除
+    setLoggedIn(false); // ログインの状態を更新
+    setErrorMessage(null); // エラーメッセージをリセット
   };
 
   return (
     <Box py={4}>
-      {errorMessage && <ErrorToast message={errorMessage} />}
-      <Flex justifyContent="center" direction="column">
-        {(hasReadPrompt(permissions) || hasAdmin(permissions)) && (
-          <NavItem icon={FaHome} href="/">
-            ホーム
-          </NavItem>
-        )}
-        {(hasCreatePrompt(permissions) || hasAdmin(permissions)) && (
-          <NavItem icon={FaUser} href="/prompts/create">
-            プロンプト作成
-          </NavItem>
-        )}
-        {(hasContract(permissions) || hasAdmin(permissions)) && (
-          <NavItem icon={FaFileContract} href="/contracts">
-            契約管理
-          </NavItem>
-        )}
-        {(hasPermission(permissions) || hasAdmin(permissions)) && (
-          <NavItem icon={FaKey} href="/permissions">
-            権限管理
-          </NavItem>
-        )}
-        {(hasUser(permissions) || hasAdmin(permissions)) && (
-          <NavItem icon={FaUserFriends} href="/users">
-            メンバー管理
-          </NavItem>
-        )}
-        <NavItem icon={FaUser} href="/profile/mypage">
-          マイページ
-        </NavItem>
-        {loggedIn && (
-          <NavItem icon={FaRegFrown} href="/logout" onClick={handleLogout}>
-            ログアウト
-          </NavItem>
-        )}
-      </Flex>
+      {loggedIn && (
+        <>
+          {errorMessage && <ErrorToast message={errorMessage} />}
+          <Flex justifyContent="center" direction="column">
+            {(hasReadPrompt(permissions) || hasAdmin(permissions)) && (
+              <NavItem icon={FaHome} href="/">
+                ホーム
+              </NavItem>
+            )}
+            {(hasCreatePrompt(permissions) || hasAdmin(permissions)) && (
+              <NavItem icon={FaUser} href="/prompts/create">
+                プロンプト作成
+              </NavItem>
+            )}
+            {(hasContract(permissions) || hasAdmin(permissions)) && (
+              <NavItem icon={FaFileContract} href="/contracts">
+                契約管理
+              </NavItem>
+            )}
+            {(hasPermission(permissions) || hasAdmin(permissions)) && (
+              <NavItem icon={FaKey} href="/permissions">
+                権限管理
+              </NavItem>
+            )}
+            {(hasUser(permissions) || hasAdmin(permissions)) && (
+              <NavItem icon={FaUserFriends} href="/users">
+                メンバー管理
+              </NavItem>
+            )}
+            <NavItem icon={FaUser} href="/profile/mypage">
+              マイページ
+            </NavItem>
+            {loggedIn && (
+              <NavItem icon={FaRegFrown} href="/logout" onClick={handleLogout}>
+                ログアウト
+              </NavItem>
+            )}
+          </Flex>
+        </>
+      )}
     </Box>
   );
 }
