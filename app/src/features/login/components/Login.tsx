@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import {
   Box,
   Container,
@@ -6,12 +6,12 @@ import {
   Button,
   FormControl,
   FormLabel,
-  Input
-} from "@chakra-ui/react";
-import { useState } from "react";
-import useLogin from "@/features/login/hooks/useLogin";
-import ErrorToast from "@/components/elements/toast/ErrorToast";
-import Loading from "@/components/elements/loading/Loading";
+  Input,
+} from '@chakra-ui/react';
+import { useState } from 'react';
+import useLogin from '@/features/login/hooks/useLogin';
+import ErrorToast from '@/components/elements/toast/ErrorToast';
+import Loading from '@/components/elements/loading/Loading';
 
 export default function LoginWindow() {
   const [email, setEmail] = useState('');
@@ -23,7 +23,11 @@ export default function LoginWindow() {
   }
 
   return (
-    <Container maxW="lg" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }}>
+    <Container
+      maxW="lg"
+      py={{ base: '12', md: '24' }}
+      px={{ base: '0', sm: '8' }}
+    >
       {errorMessage && <ErrorToast message={errorMessage} />}
 
       <Stack spacing="8">
@@ -37,19 +41,21 @@ export default function LoginWindow() {
           <Stack spacing="6">
             <FormControl>
               <FormLabel htmlFor="email">メールアドレス</FormLabel>
-              <Input 
-                id="email" 
-                type="email" 
-                value={email} 
+              <Input
+                id="email"
+                type="email"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="password">パスワード（半角記号英数字）</FormLabel>
-              <Input 
-                id="password" 
-                type="password" 
-                value={password} 
+              <FormLabel htmlFor="password">
+                パスワード（半角記号英数字）
+              </FormLabel>
+              <Input
+                id="password"
+                type="password"
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </FormControl>
@@ -59,7 +65,7 @@ export default function LoginWindow() {
               color="white"
               bg="messenger.400"
               _hover={{
-                bg: "messenger.500",
+                bg: 'messenger.500',
               }}
               onClick={() => handleLogin(email, password)}
             >
